@@ -1,4 +1,4 @@
 kanine
 ======
 
-Lucene extension for k-NN search
+k-NN search
