@@ -1,36 +1,35 @@
 package kanine.core.accumulators;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
 
 /**
  * Taken from http://www.algolist.net/Data_structures/Binary_heap
  */
-class BinaryHeap {
+class MaxHeap {
 	private float[] data;
 	private int[] index;
 	private int heapSize;
-	private int[] leafs;
 
-	public BinaryHeap(int size) {
+	public MaxHeap(int size) {
 		data = new float[size];
 		index = new int[size];
 		heapSize = 0;
-		leafs = leafs(size);
 	}
 
-	public float getMinimum() {
-		if (isEmpty())
+	public float getMax() {
+		if (isEmpty()) {
 			throw new IllegalStateException("Heap is empty");
-		else
+		} else {
 			return data[0];
+		}
 	}
 
-	public int getMinimumIndex() {
-		if (isEmpty())
+	public int getMaxIndex() {
+		if (isEmpty()) {
 			throw new IllegalStateException("Heap is empty");
-		else
+		} else {
 			return index[0];
+		}
 	}
 
 	public boolean isEmpty() {
@@ -54,17 +53,8 @@ class BinaryHeap {
 	}
 
 	public void insert(int i, float value) {
-		if (heapSize == data.length) {
-			// throw new IllegalStateException(
-			// "Heap's underlying storage is overflow");
-			for (int leaf : leafs) {
-				if (data[leaf] > value) {
-					data[leaf] = value;
-					index[leaf] = i;
-					siftUp(leaf);
-					break;
-				}
-			}
+		if (isFull()) {
+			throw new IllegalStateException("heap overflow");
 		} else {
 			heapSize++;
 			data[heapSize - 1] = value;
@@ -73,13 +63,17 @@ class BinaryHeap {
 		}
 	}
 
+	public boolean isFull() {
+		return heapSize == data.length;
+	}
+
 	private void siftUp(int nodeIndex) {
 		int parentIndex;
 		float tmp;
 		int tmpi;
 		if (nodeIndex != 0) {
 			parentIndex = getParentIndex(nodeIndex);
-			if (data[parentIndex] > data[nodeIndex]) {
+			if (cmp(data[parentIndex], data[nodeIndex])) {
 				tmp = data[parentIndex];
 				tmpi = index[parentIndex];
 				data[parentIndex] = data[nodeIndex];
@@ -91,10 +85,10 @@ class BinaryHeap {
 		}
 	}
 
-	public void removeMin() {
-		if (isEmpty())
+	public void removeMax() {
+		if (isEmpty()) {
 			throw new IllegalStateException("Heap is empty");
-		else {
+		} else {
 			data[0] = data[heapSize - 1];
 			index[0] = index[heapSize - 1];
 			heapSize--;
@@ -104,6 +98,12 @@ class BinaryHeap {
 		}
 	}
 
+	public void replaceMax(int i, float value) {
+		data[0] = value;
+		index[0] = i;
+		siftDown(0);
+	}
+
 	private void siftDown(int nodeIndex) {
 		int leftChildIndex, rightChildIndex, minIndex;
 		float tmp;
@@ -111,17 +111,19 @@ class BinaryHeap {
 		leftChildIndex = getLeftChildIndex(nodeIndex);
 		rightChildIndex = getRightChildIndex(nodeIndex);
 		if (rightChildIndex >= heapSize) {
-			if (leftChildIndex >= heapSize)
+			if (leftChildIndex >= heapSize) {
 				return;
-			else
+			} else {
 				minIndex = leftChildIndex;
+			}
 		} else {
-			if (data[leftChildIndex] <= data[rightChildIndex])
+			if (!cmp(data[leftChildIndex], data[rightChildIndex])) {
 				minIndex = leftChildIndex;
-			else
+			} else {
 				minIndex = rightChildIndex;
+			}
 		}
-		if (data[nodeIndex] > data[minIndex]) {
+		if (cmp(data[nodeIndex], data[minIndex])) {
 			tmp = data[minIndex];
 			tmpi = index[minIndex];
 			data[minIndex] = data[nodeIndex];
@@ -132,27 +134,12 @@ class BinaryHeap {
 		}
 	}
 
-	static int[] leafs(int size) {
-		LinkedList<Integer> leafs = new LinkedList<Integer>();
-		Queue<Integer> nodes = new LinkedList<Integer>();
-		nodes.offer(0);
-		while (!nodes.isEmpty()) {
-			int node = nodes.poll();
-			int leftChild = getLeftChildIndex(node);
-			if (leftChild >= size) {
-				leafs.addFirst(node);
-			} else {
-				nodes.offer(leftChild);
-				int rightChild = getRightChildIndex(node);
-				if (rightChild < size) {
-					nodes.offer(rightChild);
-				}
-			}
-		}
-		int[] leafsArray = new int[leafs.size()];
-		for (int i = 0; i < leafsArray.length; i++) {
-			leafsArray[i] = leafs.get(i);
-		}
-		return leafsArray;
+	private boolean cmp(float a, float b) {
+		return a < b;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + Arrays.toString(data);
 	}
 }

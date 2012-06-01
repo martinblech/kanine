@@ -4,24 +4,31 @@ import kanine.core.Result;
 
 public class BoundedHeapAccumulator implements BestResultsAccumulator {
 
-	private BinaryHeap heap;
+	private MaxHeap heap;
 
 	public BoundedHeapAccumulator(int n) {
-		heap = new BinaryHeap(n);
+		heap = new MaxHeap(n);
 	}
 
 	public void accumulate(int index, float distance) {
-		heap.insert(index, distance);
+		if (heap.isFull()) {
+			if (distance > heap.getMax()) {
+				return;
+			}
+			heap.replaceMax(index, distance);
+		} else {
+			heap.insert(index, distance);
+		}
 	}
 
 	public Result[] get(int n) {
 		int size = Math.min(n, heap.size());
 		Result[] results = new Result[size];
-		for (int i = 0; i < results.length; i++) {
+		for (int i = results.length - 1; i >= 0; i--) {
 			Result result = new Result();
-			result.index = heap.getMinimumIndex();
-			result.distance = heap.getMinimum();
-			heap.removeMin();
+			result.index = heap.getMaxIndex();
+			result.distance = heap.getMax();
+			heap.removeMax();
 			results[i] = result;
 		}
 		return results;
