@@ -3,14 +3,13 @@ package kanine.core.accumulators;
 import java.util.Random;
 
 import kanine.core.Result;
-import kanine.core.accumulators.BestResultsAccumulator;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public abstract class AbstractAccumulatorTest {
 	private static final float ERROR = .000001f;
+	private static float[] randomArray;
 
 	protected abstract BestResultsAccumulator createAccumulator(int indexSize,
 			int nBest);
@@ -34,12 +33,19 @@ public abstract class AbstractAccumulatorTest {
 		Assert.assertEquals(10f, results[2].distance, ERROR);
 	}
 
+	static {
+		randomArray = new float[1000];
+		Random random = new Random();
+		for (int i = 0; i < randomArray.length; i++) {
+			randomArray[i] = random.nextFloat();
+		}
+	}
+
 	@Test
 	public void fuzztest() {
-		BestResultsAccumulator a = createAccumulator(1000, 50);
-		Random random = new Random();
-		for (int i = 0; i < 1000; i++) {
-			a.accumulate(i, random.nextFloat());
+		BestResultsAccumulator a = createAccumulator(randomArray.length, 50);
+		for (int i = 0; i < randomArray.length; i++) {
+			a.accumulate(i, randomArray[i]);
 		}
 		Result[] results = a.get(50);
 		Assert.assertEquals(50, results.length);
