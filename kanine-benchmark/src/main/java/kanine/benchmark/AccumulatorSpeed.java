@@ -9,12 +9,12 @@ import kanine.core.accumulators.InsertionAccumulator;
 import kanine.core.accumulators.QuickSelectAccumulator;
 import kanine.core.accumulators.QuickSortAccumulator;
 
-
 public class AccumulatorSpeed {
 	public static void main(String[] args) {
 		int iterations = Integer.parseInt(args[0]);
 		long timeLimit = Integer.parseInt(args[1]) * 1000000000;
-		int[] indexSizes = new int[] { 10000, 100000, 1000000, 10000000 };
+		int[] indexSizes = new int[] { 10000, 100000, 1000000, 10000000,
+				100000000 };
 		int[] topNs = new int[] { 1, 10, 100, 1000, 10000, 100000 };
 		System.out.println(String.format("iterations: %d", iterations));
 		System.out.println(String.format("indexSizes (rows): %s",
