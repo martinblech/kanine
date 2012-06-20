@@ -3,7 +3,7 @@ package kanine.core.accumulators;
 import java.util.Arrays;
 
 /**
- * Taken from http://www.algolist.net/Data_structures/Binary_heap
+ * Adapted from http://www.algolist.net/Data_structures/Binary_heap
  */
 class MaxHeap {
 	private float[] data;
