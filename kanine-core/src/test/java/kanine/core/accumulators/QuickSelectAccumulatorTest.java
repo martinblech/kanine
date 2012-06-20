@@ -1,11 +1,11 @@
 package kanine.core.accumulators;
 
-import kanine.core.accumulators.QuickSelectAccumulator;
+import kanine.core.accumulators.PartialQuickSortAccumulator;
 
 public class QuickSelectAccumulatorTest extends AbstractAccumulatorTest {
 
 	@Override
-	protected QuickSelectAccumulator createAccumulator(int indexSize, int nBest) {
-		return new QuickSelectAccumulator(indexSize);
+	protected PartialQuickSortAccumulator createAccumulator(int indexSize, int nBest) {
+		return new PartialQuickSortAccumulator(indexSize);
 	}
 }

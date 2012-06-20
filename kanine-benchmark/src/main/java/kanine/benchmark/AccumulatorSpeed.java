@@ -6,7 +6,7 @@ import java.util.Random;
 import kanine.core.accumulators.BestResultsAccumulator;
 import kanine.core.accumulators.BoundedHeapAccumulator;
 import kanine.core.accumulators.InsertionAccumulator;
-import kanine.core.accumulators.QuickSelectAccumulator;
+import kanine.core.accumulators.PartialQuickSelectAccumulator;
 import kanine.core.accumulators.QuickSortAccumulator;
 
 public class AccumulatorSpeed {
@@ -25,7 +25,7 @@ public class AccumulatorSpeed {
 		@SuppressWarnings("unchecked")
 		Class<? extends BestResultsAccumulator>[] accumulatorClasses = new Class[] {
 				BoundedHeapAccumulator.class, InsertionAccumulator.class,
-				QuickSelectAccumulator.class, QuickSortAccumulator.class };
+				PartialQuickSelectAccumulator.class, QuickSortAccumulator.class };
 		for (Class<? extends BestResultsAccumulator> accumClass : accumulatorClasses) {
 			System.out.println("------------");
 			System.out.println(String.format("accumulator: %s",
@@ -78,8 +78,8 @@ public class AccumulatorSpeed {
 			return new BoundedHeapAccumulator(topN);
 		} else if (accumClass == InsertionAccumulator.class) {
 			return new InsertionAccumulator(topN);
-		} else if (accumClass == QuickSelectAccumulator.class) {
-			return new QuickSelectAccumulator(indexSize);
+		} else if (accumClass == PartialQuickSelectAccumulator.class) {
+			return new PartialQuickSelectAccumulator(indexSize);
 		} else if (accumClass == QuickSortAccumulator.class) {
 			return new QuickSortAccumulator(indexSize);
 		} else {

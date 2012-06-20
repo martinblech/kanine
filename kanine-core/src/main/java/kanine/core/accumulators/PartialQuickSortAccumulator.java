@@ -2,13 +2,13 @@ package kanine.core.accumulators;
 
 import kanine.core.Result;
 
-public class QuickSelectAccumulator implements BestResultsAccumulator {
+public class PartialQuickSortAccumulator implements BestResultsAccumulator {
 
 	private float[] distances;
 	private int[] index;
 	private int sorted = 0;
 
-	public QuickSelectAccumulator(int indexSize) {
+	public PartialQuickSortAccumulator(int indexSize) {
 		this.distances = new float[indexSize];
 		this.index = new int[indexSize];
 		for (int i = 0; i < indexSize; i++) {
