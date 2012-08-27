@@ -1,31 +1,257 @@
-iterations: 10000
-indexSizes (rows): [10000, 100000, 1000000, 10000000, 100000000]
-topNs (columns): [1, 10, 100, 1000, 10000, 100000]
-------------
-accumulator: BoundedHeapAccumulator
-0.204611	0.208133	0.312943	1.239590	4.578432	
-1.904771	1.940367	2.098723	3.538489	15.685634	60.809208	
-18.875439	18.839520	18.906492	21.590668	42.349323	211.858292	
-188.341751	189.452362	188.246262	191.564133	222.410156	533.143372	
-1845.099976	1856.784058	1845.858887	1856.804932	1906.323975	2396.623779	
-------------
-accumulator: InsertionAccumulator
-0.222491	0.193564	0.268334	2.947144	46.335773	
-1.940037	1.918042	2.008652	6.823442	261.549500	5025.463867	
-20.037943	19.353767	19.739597	26.779171	511.576660	26923.134766	
-202.654709	193.561630	196.791748	205.017715	912.540039	52772.750000	
-2012.518066	2060.744873	2014.927979	2055.919922	2991.872070	78506.757813	
-------------
-accumulator: PartialQuickSortAccumulator
-1.221909	1.090680	1.071708	1.229538	1.864585	
-12.984336	12.863690	12.423781	12.051906	15.534836	22.893742	
-155.670197	156.625214	169.120316	165.775894	135.912735	150.229202	
-801.852966	1068.280518	1034.500977	2116.754883	1428.237915	1626.727539	
-20446.55078	3797.402832	5628.479004	25526.00976	26219.43164	23619.029297	
-------------
-accumulator: QuickSortAccumulator
-2.085243	1.870435	1.828835	1.867393	1.888872	
-21.947123	21.545652	21.767248	21.426470	22.298389	22.692808	
-251.584351	254.204666	254.106003	253.645996	253.403152	265.740997	
-2982.275146	2936.781006	2936.364014	2887.445068	3021.732178	3015.693115	
-32729.14062	32803.86328	36510.32031	34190.62500	34907.44140	35726.187500	
+ 0% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.85 ns; σ=0.15 ns @ 3 trials
+ 1% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 82.72 ns; σ=2.12 ns @ 10 trials
+ 2% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 68.19 ns; σ=0.79 ns @ 10 trials
+ 3% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 69.51 ns; σ=1.07 ns @ 10 trials
+ 4% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.69 ns; σ=0.23 ns @ 10 trials
+ 5% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 77.08 ns; σ=0.76 ns @ 5 trials
+ 6% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 68.54 ns; σ=1.38 ns @ 10 trials
+ 7% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 70.37 ns; σ=0.42 ns @ 3 trials
+ 8% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=100000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.82 ns; σ=0.10 ns @ 3 trials
+ 9% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=100000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 76.62 ns; σ=0.75 ns @ 6 trials
+10% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=100000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 69.18 ns; σ=0.39 ns @ 3 trials
+11% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=100000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 73.30 ns; σ=4.76 ns @ 10 trials
+12% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.87 ns; σ=0.76 ns @ 10 trials
+13% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 77.31 ns; σ=0.53 ns @ 3 trials
+14% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 74.15 ns; σ=1.20 ns @ 10 trials
+15% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 86.90 ns; σ=11.92 ns @ 10 trials
+16% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.73 ns; σ=0.08 ns @ 3 trials
+17% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 72.02 ns; σ=0.54 ns @ 3 trials
+18% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 8079.06 ns; σ=9696.85 ns @ 10 trials
+19% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000000, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 1199271000.00 ns; σ=10364063.12 ns @ 3 trials
+20% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.90 ns; σ=0.21 ns @ 3 trials
+21% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 574.98 ns; σ=2.96 ns @ 3 trials
+22% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 577.11 ns; σ=7.77 ns @ 10 trials
+23% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 578.06 ns; σ=6.01 ns @ 10 trials
+24% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.87 ns; σ=0.11 ns @ 3 trials
+25% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 581.46 ns; σ=0.86 ns @ 3 trials
+26% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 581.46 ns; σ=5.46 ns @ 5 trials
+27% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 576.80 ns; σ=18.80 ns @ 10 trials
+28% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=100000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.81 ns; σ=0.21 ns @ 9 trials
+29% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=100000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 584.27 ns; σ=6.39 ns @ 10 trials
+30% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=100000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 576.00 ns; σ=11.43 ns @ 10 trials
+31% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=100000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 582.44 ns; σ=14.72 ns @ 10 trials
+32% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.83 ns; σ=0.07 ns @ 3 trials
+33% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 583.08 ns; σ=4.85 ns @ 3 trials
+34% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 615.80 ns; σ=8.39 ns @ 10 trials
+35% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 685.65 ns; σ=76.41 ns @ 10 trials
+36% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.78 ns; σ=0.11 ns @ 3 trials
+37% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 585.19 ns; σ=10.77 ns @ 10 trials
+38% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 9035.51 ns; σ=10241.95 ns @ 10 trials
+39% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000000, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 1189182500.00 ns; σ=12108249.16 ns @ 10 trials
+40% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.97 ns; σ=0.20 ns @ 4 trials
+41% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5609.53 ns; σ=45.55 ns @ 3 trials
+42% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5573.57 ns; σ=13.13 ns @ 3 trials
+43% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5551.72 ns; σ=128.31 ns @ 10 trials
+44% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.87 ns; σ=0.23 ns @ 10 trials
+45% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5595.15 ns; σ=109.88 ns @ 10 trials
+46% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5608.17 ns; σ=115.54 ns @ 10 trials
+47% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5612.92 ns; σ=121.26 ns @ 10 trials
+48% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=100000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 22.01 ns; σ=0.21 ns @ 3 trials
+49% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=100000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5734.21 ns; σ=77.38 ns @ 10 trials
+50% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=100000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5687.90 ns; σ=159.56 ns @ 10 trials
+51% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=100000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5629.21 ns; σ=364.32 ns @ 10 trials
+52% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.80 ns; σ=0.21 ns @ 10 trials
+53% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5546.78 ns; σ=57.77 ns @ 10 trials
+54% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5821.04 ns; σ=168.31 ns @ 10 trials
+55% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 6767.98 ns; σ=470.63 ns @ 10 trials
+56% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.83 ns; σ=0.14 ns @ 3 trials
+57% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5657.13 ns; σ=66.76 ns @ 10 trials
+58% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 15492.25 ns; σ=9954.94 ns @ 10 trials
+59% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000000, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 1199157000.00 ns; σ=11291030.88 ns @ 5 trials
+60% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 22.09 ns; σ=0.14 ns @ 3 trials
+61% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5660.70 ns; σ=34.44 ns @ 3 trials
+62% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 58383.76 ns; σ=249.95 ns @ 3 trials
+63% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 57707.38 ns; σ=778.08 ns @ 10 trials
+64% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 22.24 ns; σ=0.21 ns @ 3 trials
+65% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 57703.59 ns; σ=763.37 ns @ 10 trials
+66% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 58291.76 ns; σ=506.59 ns @ 4 trials
+67% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 58699.87 ns; σ=1409.69 ns @ 10 trials
+68% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=100000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.92 ns; σ=0.21 ns @ 7 trials
+69% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=100000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 58203.74 ns; σ=349.16 ns @ 3 trials
+70% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=100000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 58180.44 ns; σ=2096.84 ns @ 10 trials
+71% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=100000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 60996.97 ns; σ=3581.13 ns @ 10 trials
+72% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.68 ns; σ=0.21 ns @ 8 trials
+73% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 58365.13 ns; σ=752.46 ns @ 10 trials
+74% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 60506.50 ns; σ=2891.19 ns @ 10 trials
+75% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 69942.33 ns; σ=2906.10 ns @ 10 trials
+76% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.75 ns; σ=0.13 ns @ 3 trials
+77% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 60424.90 ns; σ=740.04 ns @ 10 trials
+78% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 93695.57 ns; σ=21166.69 ns @ 10 trials
+79% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000000, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 1189187500.00 ns; σ=19786163.97 ns @ 10 trials
+80% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.86 ns; σ=0.20 ns @ 6 trials
+81% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 5625.41 ns; σ=53.61 ns @ 7 trials
+82% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 726500.59 ns; σ=12583.01 ns @ 10 trials
+83% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 723650.32 ns; σ=31914.10 ns @ 10 trials
+84% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.84 ns; σ=0.20 ns @ 3 trials
+85% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 59496.81 ns; σ=385.34 ns @ 3 trials
+86% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 743207.02 ns; σ=37116.26 ns @ 10 trials
+87% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 689602.04 ns; σ=2823.06 ns @ 3 trials
+88% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=100000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 20.98 ns; σ=0.31 ns @ 10 trials
+89% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=100000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 941994.08 ns; σ=7950.41 ns @ 4 trials
+90% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=100000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 701937.77 ns; σ=5037.34 ns @ 3 trials
+91% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=100000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 681771.28 ns; σ=17061.88 ns @ 10 trials
+92% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=1000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.41 ns; σ=0.10 ns @ 3 trials
+93% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=1000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 933945.73 ns; σ=15729.30 ns @ 10 trials
+94% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=1000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 688369.40 ns; σ=8476.51 ns @ 10 trials
+95% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=1000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 767585.37 ns; σ=27946.27 ns @ 10 trials
+96% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=BoundedHeap, indexSize=10000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 21.00 ns; σ=0.21 ns @ 8 trials
+97% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=Insertion, indexSize=10000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 902959.67 ns; σ=4671.68 ns @ 3 trials
+98% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=PartialQuickSort, indexSize=10000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 927472.57 ns; σ=86865.94 ns @ 10 trials
+99% Scenario{vm=java, trial=0, benchmark=GetTop, accumType=QuickSort, indexSize=10000000, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 1124766000.00 ns; σ=234651610.82 ns @ 10 trials
+
+       accumType indexSize   topN           ns linear runtime
+     BoundedHeap      1000     10         20.8 =
+     BoundedHeap      1000    100         21.9 =
+     BoundedHeap      1000   1000         22.0 =
+     BoundedHeap      1000  10000         22.1 =
+     BoundedHeap      1000 100000         21.9 =
+     BoundedHeap     10000     10         20.7 =
+     BoundedHeap     10000    100         21.9 =
+     BoundedHeap     10000   1000         21.9 =
+     BoundedHeap     10000  10000         22.2 =
+     BoundedHeap     10000 100000         21.8 =
+     BoundedHeap    100000     10         20.8 =
+     BoundedHeap    100000    100         20.8 =
+     BoundedHeap    100000   1000         22.0 =
+     BoundedHeap    100000  10000         21.9 =
+     BoundedHeap    100000 100000         21.0 =
+     BoundedHeap   1000000     10         20.9 =
+     BoundedHeap   1000000    100         20.8 =
+     BoundedHeap   1000000   1000         21.8 =
+     BoundedHeap   1000000  10000         21.7 =
+     BoundedHeap   1000000 100000         21.4 =
+     BoundedHeap  10000000     10         20.7 =
+     BoundedHeap  10000000    100         20.8 =
+     BoundedHeap  10000000   1000         21.8 =
+     BoundedHeap  10000000  10000         21.8 =
+     BoundedHeap  10000000 100000         21.0 =
+       Insertion      1000     10         82.7 =
+       Insertion      1000    100        575.0 =
+       Insertion      1000   1000       5609.5 =
+       Insertion      1000  10000       5660.7 =
+       Insertion      1000 100000       5625.4 =
+       Insertion     10000     10         77.1 =
+       Insertion     10000    100        581.5 =
+       Insertion     10000   1000       5595.2 =
+       Insertion     10000  10000      57703.6 =
+       Insertion     10000 100000      59496.8 =
+       Insertion    100000     10         76.6 =
+       Insertion    100000    100        584.3 =
+       Insertion    100000   1000       5734.2 =
+       Insertion    100000  10000      58203.7 =
+       Insertion    100000 100000     941994.1 =
+       Insertion   1000000     10         77.3 =
+       Insertion   1000000    100        583.1 =
+       Insertion   1000000   1000       5546.8 =
+       Insertion   1000000  10000      58365.1 =
+       Insertion   1000000 100000     933945.7 =
+       Insertion  10000000     10         72.0 =
+       Insertion  10000000    100        585.2 =
+       Insertion  10000000   1000       5657.1 =
+       Insertion  10000000  10000      60424.9 =
+       Insertion  10000000 100000     902959.7 =
+PartialQuickSort      1000     10         68.2 =
+PartialQuickSort      1000    100        577.1 =
+PartialQuickSort      1000   1000       5573.6 =
+PartialQuickSort      1000  10000      58383.8 =
+PartialQuickSort      1000 100000     726500.6 =
+PartialQuickSort     10000     10         68.5 =
+PartialQuickSort     10000    100        581.5 =
+PartialQuickSort     10000   1000       5608.2 =
+PartialQuickSort     10000  10000      58291.8 =
+PartialQuickSort     10000 100000     743207.0 =
+PartialQuickSort    100000     10         69.2 =
+PartialQuickSort    100000    100        576.0 =
+PartialQuickSort    100000   1000       5687.9 =
+PartialQuickSort    100000  10000      58180.4 =
+PartialQuickSort    100000 100000     701937.8 =
+PartialQuickSort   1000000     10         74.1 =
+PartialQuickSort   1000000    100        615.8 =
+PartialQuickSort   1000000   1000       5821.0 =
+PartialQuickSort   1000000  10000      60506.5 =
+PartialQuickSort   1000000 100000     688369.4 =
+PartialQuickSort  10000000     10       8079.1 =
+PartialQuickSort  10000000    100       9035.5 =
+PartialQuickSort  10000000   1000      15492.2 =
+PartialQuickSort  10000000  10000      93695.6 =
+PartialQuickSort  10000000 100000     927472.6 =
+       QuickSort      1000     10         69.5 =
+       QuickSort      1000    100        578.1 =
+       QuickSort      1000   1000       5551.7 =
+       QuickSort      1000  10000      57707.4 =
+       QuickSort      1000 100000     723650.3 =
+       QuickSort     10000     10         70.4 =
+       QuickSort     10000    100        576.8 =
+       QuickSort     10000   1000       5612.9 =
+       QuickSort     10000  10000      58699.9 =
+       QuickSort     10000 100000     689602.0 =
+       QuickSort    100000     10         73.3 =
+       QuickSort    100000    100        582.4 =
+       QuickSort    100000   1000       5629.2 =
+       QuickSort    100000  10000      60997.0 =
+       QuickSort    100000 100000     681771.3 =
+       QuickSort   1000000     10         86.9 =
+       QuickSort   1000000    100        685.7 =
+       QuickSort   1000000   1000       6768.0 =
+       QuickSort   1000000  10000      69942.3 =
+       QuickSort   1000000 100000     767585.4 =
+       QuickSort  10000000     10 1199271000.0 ==============================
+       QuickSort  10000000    100 1189182500.0 =============================
+       QuickSort  10000000   1000 1199157000.0 =============================
+       QuickSort  10000000  10000 1189187500.0 =============================
+       QuickSort  10000000 100000 1124766000.0 ============================
+
+vm: java
+trial: 0
+benchmark: GetTop
+memoryMax: -Xmx1024m
+memoryMin: -Xms1024m
+
+ 0% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=BoundedHeap, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 11.68 ns; σ=0.89 ns @ 10 trials
+ 5% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=Insertion, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 11.22 ns; σ=0.67 ns @ 10 trials
+10% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=PartialQuickSort, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.06 ns; σ=0.16 ns @ 10 trials
+15% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=QuickSort, topN=10, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.05 ns; σ=0.06 ns @ 3 trials
+20% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=BoundedHeap, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.56 ns; σ=0.52 ns @ 10 trials
+25% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=Insertion, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 13.05 ns; σ=0.93 ns @ 10 trials
+30% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=PartialQuickSort, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.08 ns; σ=0.21 ns @ 10 trials
+35% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=QuickSort, topN=100, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.15 ns; σ=0.03 ns @ 3 trials
+40% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=BoundedHeap, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 11.42 ns; σ=0.52 ns @ 10 trials
+45% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=Insertion, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 13.53 ns; σ=0.99 ns @ 10 trials
+50% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=PartialQuickSort, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.11 ns; σ=0.09 ns @ 4 trials
+55% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=QuickSort, topN=1000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.21 ns; σ=0.21 ns @ 10 trials
+60% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=BoundedHeap, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.98 ns; σ=0.39 ns @ 10 trials
+65% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=Insertion, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 31.33 ns; σ=8.25 ns @ 10 trials
+70% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=PartialQuickSort, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.08 ns; σ=0.03 ns @ 3 trials
+75% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=QuickSort, topN=10000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.20 ns; σ=0.13 ns @ 10 trials
+80% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=BoundedHeap, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 14.28 ns; σ=0.67 ns @ 10 trials
+85% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=Insertion, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 57506.41 ns; σ=3141.02 ns @ 10 trials
+90% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=PartialQuickSort, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.08 ns; σ=0.08 ns @ 3 trials
+95% Scenario{vm=java, trial=0, benchmark=Accumulate, accumType=QuickSort, topN=100000, memoryMax=-Xmx1024m, memoryMin=-Xms1024m} 10.00 ns; σ=0.15 ns @ 10 trials
+
+       accumType   topN       ns linear runtime
+     BoundedHeap     10    11.68 =
+     BoundedHeap    100    10.56 =
+     BoundedHeap   1000    11.42 =
+     BoundedHeap  10000    10.98 =
+     BoundedHeap 100000    14.28 =
+       Insertion     10    11.22 =
+       Insertion    100    13.05 =
+       Insertion   1000    13.53 =
+       Insertion  10000    31.33 =
+       Insertion 100000 57506.41 ==============================
+PartialQuickSort     10    10.06 =
+PartialQuickSort    100    10.08 =
+PartialQuickSort   1000    10.11 =
+PartialQuickSort  10000    10.08 =
+PartialQuickSort 100000    10.08 =
+       QuickSort     10    10.05 =
+       QuickSort    100    10.15 =
+       QuickSort   1000    10.21 =
+       QuickSort  10000    10.20 =
+       QuickSort 100000    10.00 =
+
+vm: java
+trial: 0
+benchmark: Accumulate
+memoryMax: -Xmx1024m
+memoryMin: -Xms1024m

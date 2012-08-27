@@ -18,5 +18,10 @@
       <artifactId>kanine-core</artifactId>
       <version>${kanine.version}</version>
     </dependency>
+    <dependency>
+		<groupId>com.google.caliper</groupId>
+		<artifactId>caliper</artifactId>
+		<version>0.5-rc1</version>
+	</dependency>
   </dependencies>
 </project>

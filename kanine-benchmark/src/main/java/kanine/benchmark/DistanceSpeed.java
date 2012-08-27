@@ -1,10 +1,13 @@
 package kanine.benchmark;
 
-import java.util.Arrays;
 import java.util.Random;
 
-import kanine.core.distance.CosineSimilarity;
+import com.google.caliper.Param;
+import com.google.caliper.Runner;
+import com.google.caliper.SimpleBenchmark;
+
 import kanine.core.distance.Distance;
+import kanine.core.distance.CosineSimilarity;
 import kanine.core.distance.EuclideanDistance;
 import kanine.core.distance.NormalizedAcosDistance;
 import kanine.core.distance.OneMinusCosineDistance;
@@ -12,63 +15,86 @@ import kanine.core.distance.SquaredEuclideanDistance;
 import kanine.core.distance.TaxicabDistance;
 
 
-public class DistanceSpeed {
+public class DistanceSpeed extends SimpleBenchmark {
+	
+	@Param({"10", "100", "1000", "10000"})
+	private int vectorLength;
+	
+	@Param
+	private DistanceType distanceType;
+	
+	@Param("1000")
+	private int nOthers;
 
-	public static void main(String[] args) {
-		int vectorLength = Integer.parseInt(args[0]);
-		System.out.println("vector length: " + vectorLength);
-		int numVectors = Integer.parseInt(args[1]);
-		System.out.println("#vectors: " + numVectors);
-		int iterations = Integer.parseInt(args[2]);
-		System.out.println("iterations: " + iterations);
-		Distance[] functions = new Distance[] { new TaxicabDistance(),
-				new SquaredEuclideanDistance(), new EuclideanDistance(),
-				new CosineSimilarity(false, .5f),
-				new OneMinusCosineDistance(new CosineSimilarity(false, .5f)),
-				new NormalizedAcosDistance(new CosineSimilarity(false, .5f)) };
-		System.out.println("allocating memory");
-		float[] seed = new float[vectorLength];
-		float[] data = new float[vectorLength * numVectors];
-		System.out.println("initializing random vectors");
-		Random random = new Random();
-		randomFloats(seed, random, 100, -100);
-		randomFloats(data, random, 100, -100);
-		System.out.println("seed: " + Arrays.toString(seed));
-		System.out.println("warming up");
-		for (Distance f : functions) {
-			for (int i = 0; i < numVectors; i++) {
-				f.distance(seed, 0, data, i * vectorLength, vectorLength);
+	private float[] seed;
+
+	private float[] other;
+	
+	enum DistanceType {
+		TAXICAB {
+			@Override
+			Distance getDistance() {
+				return new TaxicabDistance();
 			}
-		}
-		System.out.println("benchmarking");
-		for (Distance f : functions) {
-			System.out.println("----------------");
-			System.out.println(f);
-			float d = 0;
-			long time = System.nanoTime();
-			for (int iteration = 0; iteration < iterations; iteration++) {
-				for (int i = 0; i < numVectors; i++) {
-					d = f.distance(seed, 0, data, i * vectorLength,
-							vectorLength);
-				}
+		},
+		SQUARED_EUCLIDEAN {
+			@Override
+			Distance getDistance() {
+				return new SquaredEuclideanDistance();
 			}
-			time = System.nanoTime() - time;
-			if (d != 0) {
-				System.out.println(".");
+		},
+		EUCLIDEAN {
+		@Override
+			Distance getDistance() {
+				return new EuclideanDistance();
+			}	
+		},
+		COSINE {
+			@Override
+			Distance getDistance() {
+				return new CosineSimilarity(false, .5f);
 			}
-			float nanoseconds = ((float) time);
-			nanoseconds /= iterations;
-			nanoseconds /= numVectors;
-			System.out.println(String.format("average time per vector: %fns",
-					nanoseconds));
-		}
+		},
+		ONE_MINUS_COSINE {
+			@Override
+			Distance getDistance() {
+				return new OneMinusCosineDistance(new CosineSimilarity(false, .5f));
+			}
+		},
+		NORMALIZED_ACOS {
+			@Override
+			Distance getDistance() {
+				return new NormalizedAcosDistance(new CosineSimilarity(false, .5f));
+			}
+		};
+		abstract Distance getDistance();
 	}
-
-	private static void randomFloats(float[] data, Random random, float max,
-			float min) {
-		double diff = (double) max - (double) min;
-		for (int i = 0; i < data.length; i++) {
-			data[i] = (float) ((random.nextDouble() * diff) - (diff / 2));
+	
+	private static final float[] randomize(float[] array, Random random) {
+		for (int i = 0; i < array.length; i++) {
+			array[i] = 100 * (random.nextFloat() * 2 - 1);
 		}
+		return array;
+	}
+	
+	@Override
+	protected void setUp() throws Exception {
+		Random random = new Random(0);
+		seed = randomize(new float[vectorLength], random);
+		other = randomize(new float[nOthers * vectorLength], random);
+	}
+	
+	public float timeDistance(int reps) {
+		float sum = 0;
+		Distance distanceFunction = distanceType.getDistance();
+		for (int i = 0; i < reps; i++) {
+			sum += distanceFunction.distance(seed, 0, other,
+					(i % nOthers) * vectorLength, vectorLength);
+		}
+		return sum;
+	}
+	
+	public static void main(String[] args) {
+		Runner.main(DistanceSpeed.class, args);
 	}
 }
