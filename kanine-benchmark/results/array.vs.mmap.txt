@@ -1,0 +1,68 @@
+ 0% Scenario{vm=java, trial=0, benchmark=Array, byteOrder=LITTLE_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 1289893.02 ns; σ=109000.74 ns @ 10 trials
+ 3% Scenario{vm=java, trial=0, benchmark=Array_FloatBuffer_Wrap_Get, byteOrder=LITTLE_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 1426207.56 ns; σ=57966.58 ns @ 10 trials
+ 7% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_Get, byteOrder=LITTLE_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 1603457.83 ns; σ=58054.10 ns @ 10 trials
+10% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_BulkGet, byteOrder=LITTLE_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 1897800.95 ns; σ=49628.89 ns @ 10 trials
+13% Scenario{vm=java, trial=0, benchmark=MMap_GetFloat, byteOrder=LITTLE_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 4477404.04 ns; σ=151914.72 ns @ 10 trials
+17% Scenario{vm=java, trial=0, benchmark=Array, byteOrder=BIG_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 1232749.39 ns; σ=32780.32 ns @ 10 trials
+20% Scenario{vm=java, trial=0, benchmark=Array_FloatBuffer_Wrap_Get, byteOrder=BIG_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 1397721.66 ns; σ=61469.88 ns @ 10 trials
+23% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_Get, byteOrder=BIG_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 4967414.12 ns; σ=220673.83 ns @ 10 trials
+27% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_BulkGet, byteOrder=BIG_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 5997688.62 ns; σ=170221.76 ns @ 10 trials
+30% Scenario{vm=java, trial=0, benchmark=MMap_GetFloat, byteOrder=BIG_ENDIAN, nVectors=10000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 4897387.02 ns; σ=204523.92 ns @ 10 trials
+33% Scenario{vm=java, trial=0, benchmark=Array, byteOrder=LITTLE_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 13746643.16 ns; σ=784966.51 ns @ 10 trials
+37% Scenario{vm=java, trial=0, benchmark=Array_FloatBuffer_Wrap_Get, byteOrder=LITTLE_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 15452114.75 ns; σ=589244.31 ns @ 10 trials
+40% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_Get, byteOrder=LITTLE_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 17520745.28 ns; σ=1515686.81 ns @ 10 trials
+43% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_BulkGet, byteOrder=LITTLE_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 18863109.13 ns; σ=888300.19 ns @ 10 trials
+47% Scenario{vm=java, trial=0, benchmark=MMap_GetFloat, byteOrder=LITTLE_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 43437951.87 ns; σ=1381944.24 ns @ 10 trials
+50% Scenario{vm=java, trial=0, benchmark=Array, byteOrder=BIG_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 13098119.05 ns; σ=92342.04 ns @ 3 trials
+53% Scenario{vm=java, trial=0, benchmark=Array_FloatBuffer_Wrap_Get, byteOrder=BIG_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 14448394.11 ns; σ=467995.68 ns @ 10 trials
+57% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_Get, byteOrder=BIG_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 50106972.22 ns; σ=2245097.19 ns @ 10 trials
+60% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_BulkGet, byteOrder=BIG_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 63435714.29 ns; σ=2975144.76 ns @ 10 trials
+63% Scenario{vm=java, trial=0, benchmark=MMap_GetFloat, byteOrder=BIG_ENDIAN, nVectors=100000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 51155352.94 ns; σ=3003084.97 ns @ 10 trials
+67% Scenario{vm=java, trial=0, benchmark=Array, byteOrder=LITTLE_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 124857547.62 ns; σ=34042161.34 ns @ 10 trials
+70% Scenario{vm=java, trial=0, benchmark=Array_FloatBuffer_Wrap_Get, byteOrder=LITTLE_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 133425687.50 ns; σ=11194668.64 ns @ 10 trials
+73% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_Get, byteOrder=LITTLE_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 165056733.33 ns; σ=29065295.37 ns @ 10 trials
+77% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_BulkGet, byteOrder=LITTLE_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 170713333.33 ns; σ=54499763.20 ns @ 10 trials
+80% Scenario{vm=java, trial=0, benchmark=MMap_GetFloat, byteOrder=LITTLE_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 451587500.00 ns; σ=54417925.90 ns @ 10 trials
+83% Scenario{vm=java, trial=0, benchmark=Array, byteOrder=BIG_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 142135285.71 ns; σ=11680431.61 ns @ 10 trials
+87% Scenario{vm=java, trial=0, benchmark=Array_FloatBuffer_Wrap_Get, byteOrder=BIG_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 161769900.00 ns; σ=11057452.95 ns @ 10 trials
+90% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_Get, byteOrder=BIG_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 596977000.00 ns; σ=70704098.83 ns @ 10 trials
+93% Scenario{vm=java, trial=0, benchmark=MMap_FloatBuffer_BulkGet, byteOrder=BIG_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 709243000.00 ns; σ=62149376.01 ns @ 10 trials
+97% Scenario{vm=java, trial=0, benchmark=MMap_GetFloat, byteOrder=BIG_ENDIAN, nVectors=1000000, vectorSize=100, maxMemory=-Xmx512m, minMemory=-Xms512m} 620687500.00 ns; σ=85332887.20 ns @ 10 trials
+
+nVectors     byteOrder                  benchmark     ms linear runtime
+   10000 LITTLE_ENDIAN                      Array   1.29 =
+   10000 LITTLE_ENDIAN Array_FloatBuffer_Wrap_Get   1.43 =
+   10000 LITTLE_ENDIAN       MMap_FloatBuffer_Get   1.60 =
+   10000 LITTLE_ENDIAN   MMap_FloatBuffer_BulkGet   1.90 =
+   10000 LITTLE_ENDIAN              MMap_GetFloat   4.48 =
+   10000    BIG_ENDIAN                      Array   1.23 =
+   10000    BIG_ENDIAN Array_FloatBuffer_Wrap_Get   1.40 =
+   10000    BIG_ENDIAN       MMap_FloatBuffer_Get   4.97 =
+   10000    BIG_ENDIAN   MMap_FloatBuffer_BulkGet   6.00 =
+   10000    BIG_ENDIAN              MMap_GetFloat   4.90 =
+  100000 LITTLE_ENDIAN                      Array  13.75 =
+  100000 LITTLE_ENDIAN Array_FloatBuffer_Wrap_Get  15.45 =
+  100000 LITTLE_ENDIAN       MMap_FloatBuffer_Get  17.52 =
+  100000 LITTLE_ENDIAN   MMap_FloatBuffer_BulkGet  18.86 =
+  100000 LITTLE_ENDIAN              MMap_GetFloat  43.44 =
+  100000    BIG_ENDIAN                      Array  13.10 =
+  100000    BIG_ENDIAN Array_FloatBuffer_Wrap_Get  14.45 =
+  100000    BIG_ENDIAN       MMap_FloatBuffer_Get  50.11 ==
+  100000    BIG_ENDIAN   MMap_FloatBuffer_BulkGet  63.44 ==
+  100000    BIG_ENDIAN              MMap_GetFloat  51.16 ==
+ 1000000 LITTLE_ENDIAN                      Array 124.86 =====
+ 1000000 LITTLE_ENDIAN Array_FloatBuffer_Wrap_Get 133.43 =====
+ 1000000 LITTLE_ENDIAN       MMap_FloatBuffer_Get 165.06 ======
+ 1000000 LITTLE_ENDIAN   MMap_FloatBuffer_BulkGet 170.71 =======
+ 1000000 LITTLE_ENDIAN              MMap_GetFloat 451.59 ===================
+ 1000000    BIG_ENDIAN                      Array 142.14 ======
+ 1000000    BIG_ENDIAN Array_FloatBuffer_Wrap_Get 161.77 ======
+ 1000000    BIG_ENDIAN       MMap_FloatBuffer_Get 596.98 =========================
+ 1000000    BIG_ENDIAN   MMap_FloatBuffer_BulkGet 709.24 ==============================
+ 1000000    BIG_ENDIAN              MMap_GetFloat 620.69 ==========================
+
+vm: java
+trial: 0
+vectorSize: 100
+maxMemory: -Xmx512m
+minMemory: -Xms512m
