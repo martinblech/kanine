@@ -41,4 +41,11 @@ local.properties
 .Spotlight-V100
 .Trashes
 
+# Maven
 target/
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
