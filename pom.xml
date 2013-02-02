@@ -5,15 +5,13 @@
   <groupId>kanine</groupId>
   <artifactId>kanine</artifactId>
   <version>${kanine.version}</version>
-  <url>${kanine.url}</url>
-  <description>${kanine.description}</description>
+  <url>http://github.com/martinblech/kanine</url>
+  <description>k-NN search</description>
   <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <kanine.version>0.1</kanine.version>
-    <kanine.url>http://github.com/martinblech/kanine</kanine.url>
-    <kanine.description>k-NN search</kanine.description>
   </properties>
 
   <dependencies>

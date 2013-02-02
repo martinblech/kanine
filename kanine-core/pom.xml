@@ -10,8 +10,6 @@
   </parent>
 
   <artifactId>kanine-core</artifactId>
-  <url>${kanine.url}</url>
-  <description>${kanine.description}</description>
 
   <dependencies>
   </dependencies>
