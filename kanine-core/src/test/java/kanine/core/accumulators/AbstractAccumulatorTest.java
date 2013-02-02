@@ -4,11 +4,11 @@ import java.util.Random;
 
 import kanine.core.Result;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public abstract class AbstractAccumulatorTest {
-	private static final float ERROR = .000001f;
+	private static final float ERROR = 0f;
 	private static float[] randomArray;
 
 	protected abstract BestResultsAccumulator createAccumulator(int indexSize,
@@ -23,14 +23,14 @@ public abstract class AbstractAccumulatorTest {
 		a.accumulate(2, 10f);
 		Result[] results = a.get(3);
 
-		Assert.assertEquals(0, results[0].index);
-		Assert.assertEquals(0f, results[0].distance, ERROR);
+		assertEquals(0, results[0].index);
+		assertEquals(0f, results[0].distance, ERROR);
 
-		Assert.assertEquals(1, results[1].index);
-		Assert.assertEquals(1f, results[1].distance, ERROR);
+		assertEquals(1, results[1].index);
+		assertEquals(1f, results[1].distance, ERROR);
 
-		Assert.assertEquals(2, results[2].index);
-		Assert.assertEquals(10f, results[2].distance, ERROR);
+		assertEquals(2, results[2].index);
+		assertEquals(10f, results[2].distance, ERROR);
 	}
 
 	static {
@@ -48,11 +48,11 @@ public abstract class AbstractAccumulatorTest {
 			a.accumulate(i, randomArray[i]);
 		}
 		Result[] results = a.get(50);
-		Assert.assertEquals(50, results.length);
+		assertEquals(50, results.length);
 		Result lastResult = null;
 		for (Result result : results) {
 			if (lastResult != null) {
-				Assert.assertTrue(lastResult.distance <= result.distance);
+				assertTrue(lastResult.distance <= result.distance);
 			}
 			lastResult = result;
 		}
