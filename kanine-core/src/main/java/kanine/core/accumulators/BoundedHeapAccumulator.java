@@ -12,7 +12,7 @@ public class BoundedHeapAccumulator implements BestResultsAccumulator {
 
 	public void accumulate(int index, float distance) {
 		if (heap.isFull()) {
-			if (distance > heap.getMax()) {
+			if (heap.isEmpty() || distance > heap.getMax()) {
 				return;
 			}
 			heap.replaceMax(index, distance);

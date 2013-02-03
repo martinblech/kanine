@@ -29,8 +29,9 @@ public class QuickSortAccumulator implements BestResultsAccumulator {
 			QuickSort.sort(distances, index);
 			sorted = true;
 		}
-		Result[] results = new Result[n];
-		for (int i = 0; i < n; i++) {
+        int safeN = Math.min(n, index.length);
+		Result[] results = new Result[safeN];
+		for (int i = 0; i < safeN; i++) {
 			Result result = new Result();
 			result.index = index[i];
 			result.distance = distances[i];

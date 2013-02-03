@@ -2,11 +2,10 @@ package kanine.core.accumulators;
 
 import java.util.Random;
 
-import junit.framework.Assert;
 import kanine.core.accumulators.QuickSort;
 
-import org.junit.Test;
-
+import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 public class QuickSortTest {
 
@@ -25,9 +24,9 @@ public class QuickSortTest {
 		QuickSort.sort(a, indexes);
 		for (int i = 0; i < a.length; i++) {
 			if (i > 0) {
-				Assert.assertTrue(a[i] >= a[i - 1]);
+				assertTrue(a[i] >= a[i - 1]);
 			}
-			Assert.assertEquals(a[i], acopy[indexes[i]]);
+			assertEquals(a[i], acopy[indexes[i]]);
 		}
 	}
 
