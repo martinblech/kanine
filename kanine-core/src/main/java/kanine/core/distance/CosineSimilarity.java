@@ -1,5 +1,7 @@
 package kanine.core.distance;
 
+import java.nio.FloatBuffer;
+
 public class CosineSimilarity extends Distance {
 	protected boolean failOnZeroNorm;
 	protected float defaultValue;
@@ -10,8 +12,8 @@ public class CosineSimilarity extends Distance {
 	}
 
 	@Override
-	public float distance(float[] a, int aOffset, float[] b, int bOffset,
-			int length) {
+	public float distance(
+            float[] a, int aOffset, float[] b, int bOffset, int length) {
 		float dotProduct = 0f;
 		float aNorm = 0f;
 		float bNorm = 0f;
@@ -22,15 +24,34 @@ public class CosineSimilarity extends Distance {
 			aNorm += ai * ai;
 			bNorm += bi * bi;
 		}
-		if (aNorm == 0 || bNorm == 0) {
-			if (failOnZeroNorm) {
-				throw new IllegalArgumentException(
-						"can't calculate cosine of a zero-norm vector");
-			} else {
-				return defaultValue;
-			}
+        float normProduct = aNorm * bNorm;
+		if (normProduct == 0) {
+			if (failOnZeroNorm) throw new IllegalArgumentException("zero norm");
+            return defaultValue;
 		}
-		float cos = dotProduct / (float) Math.sqrt(aNorm * bNorm);
+		float cos = dotProduct / (float) Math.sqrt(normProduct);
+		return cos;
+	}
+
+	@Override
+	public float distance(
+            float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
+		float dotProduct = 0f;
+		float aNorm = 0f;
+		float bNorm = 0f;
+		for (int i = 0; i < length; i++) {
+			float ai = a[aOffset + i];
+			float bi = b.get(bOffset + i);
+			dotProduct += ai * bi;
+			aNorm += ai * ai;
+			bNorm += bi * bi;
+		}
+        float normProduct = aNorm * bNorm;
+		if (normProduct == 0) {
+			if (failOnZeroNorm) throw new IllegalArgumentException("zero norm");
+            return defaultValue;
+		}
+		float cos = dotProduct / (float) Math.sqrt(normProduct);
 		return cos;
 	}
 

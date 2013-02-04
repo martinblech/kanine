@@ -32,7 +32,7 @@ public abstract class AbstractAccumulatorTest {
 		assertEquals(10f, results[2].distance, ERROR);
 	}
 
-	private static float[] randomArray(int length) {
+	private static final float[] randomArray(int length) {
 		float[] randomArray = new float[length];
 		Random random = new Random(0);
 		for (int i = 0; i < randomArray.length; i++) {

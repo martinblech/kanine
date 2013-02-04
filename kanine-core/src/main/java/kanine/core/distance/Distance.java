@@ -1,15 +1,13 @@
-/**
- * 
- */
 package kanine.core.distance;
 
-/**
- * @author mblech
- * 
- */
+import java.nio.FloatBuffer;
+
 public abstract class Distance {
-	public abstract float distance(float[] a, int aOffset, float[] b,
-			int bOffset, int length);
+	public abstract float distance(
+            float[] a, int aOffset, float[] b, int bOffset, int length);
+
+	public abstract float distance(
+            float[] a, int aOffset, FloatBuffer b, int bOffset, int length);
 
 	@Override
 	public String toString() {
