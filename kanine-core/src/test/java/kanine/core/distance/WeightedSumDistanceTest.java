@@ -9,34 +9,37 @@ public class WeightedSumDistanceTest extends AbstractDistanceTest {
 
     @Override
     protected Distance getDistance() {
-        Distance d1 = mock(Distance.class);
-        Distance d2 = mock(Distance.class);
+        final Distance d1 = new SquaredEuclideanDistance();
+        final Distance d2 = new SquaredEuclideanDistance();
         return new WeightedSumDistance(
-                new Distance[] {d1, d2}, new float[] {.5f, .5f});
+                new Distance[] {d1, d2}, new float[] {.75f, .25f});
     }
 
     @DataProvider(name = "weighted-sum-data")
     public Object[][] generateData() {
         return new Object[][] {
-            {1f, 1f, 1f, 1f},
-            {1f, 1f, .5f, .5f},
-            {4f, 1f, .25f, .75f},
-            {400f, .3f, 20f, 75f}
+            {0}, {1}, {2}, {3}, {4}
         };
     }
 
     @Test(dataProvider = "weighted-sum-data")
-    public void testWeightedSum(float v1, float v2, float w1, float w2) {
-        Distance d1 = mock(Distance.class);
-        when(d1.distance(EMPTY, 0, EMPTY, 0, 0)).thenReturn(v1);
-        Distance d2 = mock(Distance.class);
-        when(d2.distance(EMPTY, 0, EMPTY, 0, 0)).thenReturn(v2);
-        Distance d = new WeightedSumDistance(
-                new Distance[] {d1, d2}, new float[] {w1, w2});
-        assertEquals(
-                v1 * w1 + v2 * w2,
-                d.distance(EMPTY, 0, EMPTY, 0, 0),
-                ERROR);
+    public void testWeightedSum(int n) {
+        final Distance[] distances = new Distance[n];
+        final float[] weights = new float[n];
+        float total = 0;
+        for (int i = 0; i < n; i++) {
+            float v = (float) i + 1;
+            final Distance d = mock(Distance.class);
+            when(d.distance(EMPTY, 0, EMPTY, 0, 0)).thenReturn(v);
+            distances[i] = d;
+            weights[i] = v;
+            total += v * v;
+        }
+        final Distance d = new WeightedSumDistance(distances, weights);
+        assertEquals(total, d.distance(EMPTY, 0, EMPTY, 0, 0), ERROR);
+        for (Distance d2: distances) {
+            verify(d2).distance(EMPTY, 0, EMPTY, 0, 0);
+        }
     }
 }
 
