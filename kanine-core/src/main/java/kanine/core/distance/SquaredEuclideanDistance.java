@@ -2,7 +2,7 @@ package kanine.core.distance;
 
 import java.nio.FloatBuffer;
 
-public class SquaredEuclideanDistance extends Distance {
+public class SquaredEuclideanDistance implements Distance {
 
 	@Override
 	public float distance(
@@ -29,5 +29,10 @@ public class SquaredEuclideanDistance extends Distance {
 		}
 		return d;
 	}
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 
 }

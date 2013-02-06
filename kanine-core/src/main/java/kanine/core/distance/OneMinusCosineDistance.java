@@ -2,9 +2,9 @@ package kanine.core.distance;
 
 import java.nio.FloatBuffer;
 
-public class OneMinusCosineDistance extends Distance {
+public final class OneMinusCosineDistance implements Distance {
 
-	private Distance d;
+	private final Distance d;
 
 	public OneMinusCosineDistance(Distance d) {
 		this.d = d;
@@ -23,4 +23,9 @@ public class OneMinusCosineDistance extends Distance {
 		float cos = d.distance(a, aOffset, b, bOffset, length);
 		return 1f - ((cos + 1f) / 2f);
 	}
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s)", getClass().getSimpleName(), d);
+    }
 }

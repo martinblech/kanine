@@ -2,10 +2,10 @@ package kanine.core.accumulators;
 
 import kanine.core.Result;
 
-public class InsertionAccumulator implements BestResultsAccumulator {
+public final class InsertionAccumulator implements BestResultsAccumulator {
 
-	private int[] indexes;
-	private float[] distances;
+	private final int[] indexes;
+	private final float[] distances;
 	private int count;
 
 	public InsertionAccumulator(int n) {
@@ -14,6 +14,7 @@ public class InsertionAccumulator implements BestResultsAccumulator {
 		this.count = 0;
 	}
 
+    @Override
 	public void accumulate(int index, float distance) {
 		int i;
 		int n = indexes.length;
@@ -36,13 +37,11 @@ public class InsertionAccumulator implements BestResultsAccumulator {
 		}
 	}
 
+    @Override
 	public Result[] get(int n) {
 		Result[] results = new Result[Math.min(count, n)];
 		for (int i = 0; i < results.length; i++) {
-			Result result = new Result();
-			result.index = indexes[i];
-			result.distance = distances[i];
-			results[i] = result;
+			results[i] = new Result(indexes[i], distances[i]);
 		}
 		return results;
 	}

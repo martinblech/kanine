@@ -5,9 +5,9 @@ import java.util.Arrays;
 /**
  * Adapted from http://www.algolist.net/Data_structures/Binary_heap
  */
-class MaxHeap {
-	private float[] data;
-	private int[] index;
+final class MaxHeap {
+	private final float[] data;
+	private final int[] index;
 	private int heapSize;
 
 	public MaxHeap(int size) {

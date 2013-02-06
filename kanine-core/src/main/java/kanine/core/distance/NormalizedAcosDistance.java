@@ -2,9 +2,9 @@ package kanine.core.distance;
 
 import java.nio.FloatBuffer;
 
-public class NormalizedAcosDistance extends Distance {
+public final class NormalizedAcosDistance implements Distance {
 	private static final float FLOAT_PI = (float) Math.PI;
-	private Distance d;
+	private final Distance d;
 
 	public NormalizedAcosDistance(Distance d) {
 		this.d = d;
@@ -23,4 +23,9 @@ public class NormalizedAcosDistance extends Distance {
 		float cos = d.distance(a, aOffset, b, bOffset, length);
 		return (float) Math.acos(cos) / FLOAT_PI;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s)", getClass().getSimpleName(), d);
+    }
 }

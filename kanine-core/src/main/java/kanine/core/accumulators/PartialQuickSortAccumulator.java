@@ -2,10 +2,11 @@ package kanine.core.accumulators;
 
 import kanine.core.Result;
 
-public class PartialQuickSortAccumulator implements BestResultsAccumulator {
+public final class PartialQuickSortAccumulator
+        implements BestResultsAccumulator {
 
-	private float[] distances;
-	private int[] index;
+	private final float[] distances;
+	private final int[] index;
 	private int sorted = 0;
 
 	public PartialQuickSortAccumulator(int indexSize) {
@@ -17,6 +18,7 @@ public class PartialQuickSortAccumulator implements BestResultsAccumulator {
 		}
 	}
 
+    @Override
 	public void accumulate(int index, float distance) {
 		if (sorted > 0) {
 			throw new IllegalStateException("arrays already sorted");
@@ -24,6 +26,7 @@ public class PartialQuickSortAccumulator implements BestResultsAccumulator {
 		distances[index] = distance;
 	}
 
+    @Override
 	public Result[] get(int n) {
 		if (sorted < n) {
 			QuickSort.select(distances, index, n);
@@ -32,10 +35,7 @@ public class PartialQuickSortAccumulator implements BestResultsAccumulator {
         int safeN = Math.min(n, index.length);
 		Result[] results = new Result[safeN];
 		for (int i = 0; i < safeN; i++) {
-			Result result = new Result();
-			result.index = index[i];
-			result.distance = distances[i];
-			results[i] = result;
+			results[i] = new Result(index[i], distances[i]);
 		}
 		return results;
 	}

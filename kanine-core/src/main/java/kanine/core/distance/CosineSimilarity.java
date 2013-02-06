@@ -2,9 +2,9 @@ package kanine.core.distance;
 
 import java.nio.FloatBuffer;
 
-public class CosineSimilarity extends Distance {
-	protected boolean failOnZeroNorm;
-	protected float defaultValue;
+public final class CosineSimilarity implements Distance {
+	private final boolean failOnZeroNorm;
+	private final float defaultValue;
 
 	public CosineSimilarity(boolean failOnZeroNorm, float defaultValue) {
 		this.failOnZeroNorm = failOnZeroNorm;
@@ -57,9 +57,8 @@ public class CosineSimilarity extends Distance {
 
 	@Override
 	public String toString() {
-		return super.toString()
-				+ String.format("(zeronorm=%s)", failOnZeroNorm ? "fail"
-						: defaultValue);
+		return String.format("%s(zeronorm=%s)", getClass().getSimpleName(),
+                failOnZeroNorm ? "fail" : defaultValue);
 	}
 
 }

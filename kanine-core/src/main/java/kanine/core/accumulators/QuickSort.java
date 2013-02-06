@@ -1,24 +1,28 @@
 package kanine.core.accumulators;
 
 /**
- * 
+ *
  * Taken from
  * http://stackoverflow.com/questions/951848/java-array-sort-quick-way
  * -to-get-a-sorted-list-of-indices-of-an-array and
  * http://algs4.cs.princeton.edu/23quicksort/Quick.java.html
- * 
+ *
  * @author http://stackoverflow.com/users/61158/kd304
  * @author Robert Sedgewick
  * @author Kevin Wayne
- * 
+ *
  */
-class QuickSort {
-	public static void sort(float[] main, int[] index) {
+final class QuickSort {
+    private QuickSort() {
+        throw new AssertionError(); // not even by accident
+    }
+
+	static void sort(float[] main, int[] index) {
 		sort(main, index, 0, index.length - 1);
 	}
 
 	// quicksort a[left] to a[right]
-	public static void sort(float[] a, int[] index, int left, int right) {
+	static void sort(float[] a, int[] index, int left, int right) {
 		if (right <= left)
 			return;
 		int i = partition(a, index, left, right);
@@ -26,12 +30,12 @@ class QuickSort {
 		sort(a, index, i + 1, right);
 	}
 
-	public static void select(float[] main, int[] index, int k) {
+	static void select(float[] main, int[] index, int k) {
 		select(main, index, 0, index.length - 1, k);
 	}
 
 	// quicksort a[left] to a[right]
-	public static void select(float[] a, int[] index, int left, int right, int k) {
+	static void select(float[] a, int[] index, int left, int right, int k) {
 		if (right <= left)
 			return;
 		int i = partition(a, index, left, right);
