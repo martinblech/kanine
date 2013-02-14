@@ -13,11 +13,11 @@ import com.google.caliper.Runner;
 import com.google.caliper.SimpleBenchmark;
 
 public class ArrayVsMMap extends SimpleBenchmark {
-	
+
 	@Param("100") int vectorSize;
 	@Param({"10000", "100000", "1000000"}) int nVectors;
 	@Param ByteOrderType byteOrder;
-	
+
 	public static enum ByteOrderType {
 		LITTLE_ENDIAN {
 			@Override
@@ -33,7 +33,7 @@ public class ArrayVsMMap extends SimpleBenchmark {
 		};
 		abstract ByteOrder getByteOrder();
 	}
-	
+
 	private String dataFilePath;
 	private RandomAccessFile file;
 	private FileChannel channel;
@@ -41,7 +41,7 @@ public class ArrayVsMMap extends SimpleBenchmark {
 	private FloatBuffer floatBuffer;
 	private float[] data;
 	private FloatBuffer wrappedData;
-	
+
 	@Override
 	protected void setUp() throws Exception {
 		data = new float[vectorSize*nVectors];
@@ -63,14 +63,14 @@ public class ArrayVsMMap extends SimpleBenchmark {
 		buffer.load();
 		buffer.limit(4*data.length);
 	}
-	
+
 	@Override
 	protected void tearDown() throws Exception {
 		channel.close();
 		file.close();
 		new File(dataFilePath).delete();
 	}
-	
+
 	public float timeArray(int reps) {
 		float sum = 0;
 		for (int rep = 0; rep < reps; rep++) {
@@ -80,7 +80,7 @@ public class ArrayVsMMap extends SimpleBenchmark {
 		}
 		return sum;
 	}
-	
+
 	public float timeArray_FloatBuffer_Wrap_Get(int reps) {
 		float sum = 0;
 		for (int rep = 0; rep < reps; rep++) {
@@ -123,7 +123,7 @@ public class ArrayVsMMap extends SimpleBenchmark {
 		}
 		return sum;
 	}
-	
+
 	private final static float calc(float[] data, int offset, int length) {
 		float sum = 0;
 		for (int i = offset; i < offset + length; i++) {
@@ -139,7 +139,7 @@ public class ArrayVsMMap extends SimpleBenchmark {
 		}
 		return sum / length;
 	}
-	
+
 	private final static float calc(FloatBuffer data, int offset, int length) {
 		float sum = 0;
 		for (int i = offset; i < offset + length; i++) {

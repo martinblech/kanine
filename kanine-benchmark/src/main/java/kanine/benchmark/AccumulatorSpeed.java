@@ -26,8 +26,8 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			}
 		}
 	}
-	
-	public static class AccumulateBenchmark 
+
+	public static class AccumulateBenchmark
 			extends AbstractAccumulatorBenchmark {
 		@Param({
 			"BoundedHeap",
@@ -36,7 +36,7 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			"QuickSort"
 		})
 		protected String accumType;
-		
+
 		@Param({
 			"10",
 			"100",
@@ -45,11 +45,11 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			"100000"
 		})
 		protected int topN;
-		
+
 		protected BestResultsAccumulator accumulator;
-		
+
 		private int indexSize;
-		
+
 		@Override
 		protected void setUp() throws Exception {
 			super.setUp();
@@ -60,20 +60,20 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 				accumulator.accumulate(i, data[i % data.length]);
 			}
 		}
-		
+
 		public String timeAccumulate(int reps) {
 			for (int i = 0; i < reps; i++) {
 				accumulator.accumulate(i % indexSize, data[i % data.length]);
 			}
 			return accumulator.toString();
 		}
-	
+
 		public static void main(String[] args) {
 			Runner.main(AccumulateBenchmark.class, args);
 		}
-	
+
 	}
-	
+
 	public static class GetTopBenchmark 
 			extends AbstractAccumulatorBenchmark {
 		@Param({
@@ -83,7 +83,7 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			"QuickSort"
 		})
 		protected String accumType;
-		
+
 		@Param({
 			"10",
 			"100",
@@ -92,10 +92,9 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			"100000"
 		})
 		protected int topN;
-		
+
 		protected BestResultsAccumulator accumulator;
-		
-		
+
 		@Param({
 			"1000",
 			"10000",
@@ -104,7 +103,7 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			"10000000"
 		})
 		private int indexSize;
-		
+
 		@Override
 		protected void setUp() throws Exception {
 			super.setUp();
@@ -114,7 +113,7 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 				accumulator.accumulate(i, data[i % data.length]);
 			}
 		}
-		
+
 		public long timeGetTop(int reps) {
 			long count = 0;
 			for (int i = 0; i < reps; i++) {
@@ -122,11 +121,11 @@ public class AccumulatorSpeed extends SimpleBenchmark {
 			}
 			return count;
 		}
-	
+
 		public static void main(String[] args) {
 			Runner.main(GetTopBenchmark.class, args);
 		}
-		
+
 	}
 
 	private static BestResultsAccumulator getAccumulator(String accumType,
