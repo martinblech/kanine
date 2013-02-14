@@ -1,7 +1,7 @@
 package kanine.core.distance;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class SquaredEuclideanDistanceTest extends AbstractDistanceTest {
 

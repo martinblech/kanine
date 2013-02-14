@@ -3,8 +3,8 @@ package kanine.core.distance;
 import java.util.*;
 import java.nio.FloatBuffer;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public abstract class AbstractDistanceTest {
 
@@ -23,23 +23,18 @@ public abstract class AbstractDistanceTest {
 
     protected abstract Distance getDistance();
 
-    @DataProvider(name = "buffer-data")
-    public Object[][] createBufferData() {
+    @Test
+    public void arrayBufferEquivalence() {
         List<Object[]> objects = new LinkedList<Object[]>();
         float[] randomFloats = randomArray(1000);
         FloatBuffer buf = FloatBuffer.wrap(randomFloats);
         for (int i = 0; i < 100; i++) {
-            objects.add(new Object[] {
-                randomFloats, 0, randomFloats, buf, i*10, 10
-            });
+            checkEquals(randomFloats, 0, randomFloats, buf, i*10, 10);
         }
-        return objects.toArray(new Object[objects.size()][]);
     }
 
-    @Test(dataProvider = "buffer-data")
-    public void arrayBufferEquivalence(
-            float[] a, int aOffset, float[] bArray, FloatBuffer bBuffer,
-            int bOffset, int length) {
+    public void checkEquals(float[] a, int aOffset, float[] bArray,
+            FloatBuffer bBuffer, int bOffset, int length) {
         Distance d = getDistance();
         assertEquals(d.distance(a, aOffset, bArray, bOffset, length),
                 d.distance(a, aOffset, bBuffer, bOffset, length),

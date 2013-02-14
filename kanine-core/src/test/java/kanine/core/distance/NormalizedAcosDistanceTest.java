@@ -1,7 +1,8 @@
 package kanine.core.distance;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 
@@ -15,7 +16,7 @@ public class NormalizedAcosDistanceTest extends AbstractDistanceTest {
     private Distance mockCosine;
     private NormalizedAcosDistance d;
 
-    @BeforeMethod
+    @Before
     public void setup() {
         mockCosine = mock(Distance.class);
 		d = new NormalizedAcosDistance(mockCosine);

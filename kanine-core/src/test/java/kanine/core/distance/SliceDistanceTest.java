@@ -2,8 +2,8 @@ package kanine.core.distance;
 
 import java.nio.FloatBuffer;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 

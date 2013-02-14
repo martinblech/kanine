@@ -4,8 +4,8 @@ import java.util.Random;
 
 import kanine.core.Result;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public abstract class AbstractAccumulatorTest {
 	private static final float ERROR = 0f;
@@ -49,23 +49,37 @@ public abstract class AbstractAccumulatorTest {
         return a;
     }
 
-    @DataProvider(name = "accumulator-data")
-    public Object[][] createAccumulatorData() {
-        return new Object[][] {
-            {0, randomArray(0)},
-            {0, randomArray(1)},
-            {1, randomArray(0)},
-            {1, randomArray(10)},
-            {5, randomArray(10)},
-            {50, randomArray(10)},
-            {50, randomArray(1000)},
-            {1000, randomArray(1000)},
-            {50, sawtooth(1000, 10)}
-        };
+    @Test
+    public void edgeCases() {
+        for (int topN = 0; topN <= 1; topN++) {
+            for (int n = 0; n <= 1; n++) {
+                checkCorrect(topN, randomArray(n));
+            }
+        }
     }
 
-	@Test(dataProvider = "accumulator-data")
-	public void test(int topN, float[] data) {
+    @Test
+    public void top10percent() {
+        for (int n = 10; n <= 10000; n *= 10) {
+            checkCorrect(n / 10, randomArray(n));
+        }
+    }
+
+    @Test
+    public void topAll() {
+        for (int n = 10; n <= 10000; n *= 10) {
+            checkCorrect(n, randomArray(n));
+        }
+    }
+
+    @Test
+    public void sawtooth() {
+        for (int n = 10; n <= 10000; n *= 10) {
+            checkCorrect(n / 10, sawtooth(n, 10));
+        }
+    }
+
+	public void checkCorrect(int topN, float[] data) {
 		BestResultsAccumulator a = createAccumulator(data.length, topN);
 		for (int i = 0; i < data.length; i++) {
 			a.accumulate(i, data[i]);

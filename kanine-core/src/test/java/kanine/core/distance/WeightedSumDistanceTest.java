@@ -1,7 +1,7 @@
 package kanine.core.distance;
 
-import org.testng.annotations.*;
-import static org.testng.AssertJUnit.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 
@@ -15,15 +15,14 @@ public class WeightedSumDistanceTest extends AbstractDistanceTest {
                 new Distance[] {d1, d2}, new float[] {.75f, .25f});
     }
 
-    @DataProvider(name = "weighted-sum-data")
-    public Object[][] generateData() {
-        return new Object[][] {
-            {0}, {1}, {2}, {3}, {4}
-        };
+    @Test
+    public void weightedSum() {
+        for (int i = 0; i < 10; i++) {
+            checkWeightedSum(i);
+        }
     }
 
-    @Test(dataProvider = "weighted-sum-data")
-    public void testWeightedSum(int n) {
+    public void checkWeightedSum(int n) {
         final Distance[] distances = new Distance[n];
         final float[] weights = new float[n];
         float total = 0;
