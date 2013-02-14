@@ -24,9 +24,4 @@ public final class SingleSeedScorer implements Scorer {
         return distance.distance(seed, 0, data, offset, seed.length);
     }
 
-    @Override
-    public int vectorLength() {
-        return seed.length;
-    }
-
 }
