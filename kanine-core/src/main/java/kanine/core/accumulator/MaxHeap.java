@@ -1,4 +1,4 @@
-package kanine.core.accumulators;
+package kanine.core.accumulator;
 
 import java.util.Arrays;
 

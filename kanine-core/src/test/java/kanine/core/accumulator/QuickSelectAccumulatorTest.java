@@ -1,6 +1,4 @@
-package kanine.core.accumulators;
-
-import kanine.core.accumulators.PartialQuickSortAccumulator;
+package kanine.core.accumulator;
 
 public class QuickSelectAccumulatorTest extends AbstractAccumulatorTest {
 

@@ -1,4 +1,4 @@
-package kanine.core.accumulators;
+package kanine.core.accumulator;
 
 import kanine.core.Result;
 
@@ -11,14 +11,14 @@ public final class BoundedHeapAccumulator implements BestResultsAccumulator {
 	}
 
     @Override
-	public void accumulate(int index, float distance) {
+	public void accumulate(int index, float inverseScore) {
 		if (heap.isFull()) {
-			if (heap.isEmpty() || distance > heap.getMax()) {
+			if (heap.isEmpty() || inverseScore > heap.getMax()) {
 				return;
 			}
-			heap.replaceMax(index, distance);
+			heap.replaceMax(index, inverseScore);
 		} else {
-			heap.insert(index, distance);
+			heap.insert(index, inverseScore);
 		}
 	}
 

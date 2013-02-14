@@ -1,6 +1,4 @@
-package kanine.core.accumulators;
-
-import kanine.core.accumulators.InsertionAccumulator;
+package kanine.core.accumulator;
 
 public class InsertionAccumulatorTest extends AbstractAccumulatorTest {
 
