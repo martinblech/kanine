@@ -2,16 +2,16 @@ package kanine.core;
 
 public class Result {
 	public final int index;
-	public final float distance;
+	public final float inverseScore;
 
-    public Result(int index, float distance) {
+    public Result(int index, float inverseScore) {
         this.index = index;
-        this.distance = distance;
+        this.inverseScore = inverseScore;
     }
 
 	@Override
 	public String toString() {
 		return String.format("%s(%d, %f)",
-                getClass().getName(), index, distance);
+                getClass().getName(), index, inverseScore);
 	}
 }
