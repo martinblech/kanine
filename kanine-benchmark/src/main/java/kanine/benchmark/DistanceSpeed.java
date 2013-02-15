@@ -6,7 +6,7 @@ import com.google.caliper.Param;
 import com.google.caliper.Runner;
 import com.google.caliper.SimpleBenchmark;
 
-import kanine.core.distance.*;
+import kanine.core.*;
 
 public class DistanceSpeed extends SimpleBenchmark {
 
@@ -26,7 +26,7 @@ public class DistanceSpeed extends SimpleBenchmark {
 	enum DistanceType {
 		TAXICAB {
 			@Override
-			Distance getDistance() {
+            Distance getDistance() {
 				return new TaxicabDistance();
 			}
 		},

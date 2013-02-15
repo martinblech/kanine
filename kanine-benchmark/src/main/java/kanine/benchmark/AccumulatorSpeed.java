@@ -6,7 +6,7 @@ import com.google.caliper.Param;
 import com.google.caliper.Runner;
 import com.google.caliper.SimpleBenchmark;
 
-import kanine.core.accumulator.*;
+import kanine.core.*;
 
 public class AccumulatorSpeed extends SimpleBenchmark {
 	public static abstract class AbstractAccumulatorBenchmark
