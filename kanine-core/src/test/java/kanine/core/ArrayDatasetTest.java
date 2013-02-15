@@ -12,28 +12,23 @@ import static org.mockito.Mockito.*;
 import kanine.core.BestResultsAccumulator;
 import kanine.core.Scorer;
 
-public class ArrayDatasetTest {
+public class ArrayDatasetTest extends AbstractDatasetTest<float[]> {
 
-    @Test
-    public void applyArrayAllElements() {
-        final int vectorLength = 10;
-        final int size = 5;
-        final float[] data = new float[vectorLength * size];
-        final ArrayDataset dataset = new ArrayDataset(data, vectorLength);
-        final Scorer scorer = mock(Scorer.class);
-        final BestResultsAccumulator accum = mock(BestResultsAccumulator.class);
-        OngoingStubbing<Float> scoreStub =
-            when(scorer.inverseScore(any(float[].class), anyInt()));
-        for (int i = 0; i < size; i++) {
-            scoreStub = scoreStub.thenReturn((float) i);
-        }
-        scoreStub.thenThrow(new AssertionError("no more elements"));
-        dataset.apply(scorer, accum);
-        final InOrder inOrder = inOrder(scorer, accum);
-        for (int i = 0; i < size; i++) {
-            inOrder.verify(scorer).inverseScore(data, i * vectorLength);
-            inOrder.verify(accum).accumulate(i, (float) i);
-        }
+    protected float[] getData(int size) {
+        return new float[size];
+    }
+
+    protected OngoingStubbing<Float> getScoreStub(Scorer scorer) {
+        return when(scorer.inverseScore(any(float[].class), anyInt()));
+    }
+
+    protected Dataset getDataset(float[] data, int vectorLength) {
+        return new ArrayDataset(data, vectorLength);
+    }
+
+    protected void verifyScore(
+            InOrder inOrder, Scorer scorer, float[] data, int offset) {
+        inOrder.verify(scorer).inverseScore(data, offset);
     }
 
 }
