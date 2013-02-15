@@ -9,10 +9,10 @@ public class ArrayDataset implements Dataset {
     private final int vectorLength;
     private final int size;
 
-    public ArrayDataset(float[] data, int vectorLength, int size) {
+    public ArrayDataset(float[] data, int vectorLength) {
         this.data = data;
         this.vectorLength = vectorLength;
-        this.size = size;
+        this.size = data.length / vectorLength;
     }
 
     public void apply(Scorer scorer, BestResultsAccumulator accum) {

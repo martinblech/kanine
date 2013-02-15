@@ -17,10 +17,10 @@ public class ArrayDatasetTest {
 
     @Test
     public void applyArrayAllElements() {
-        final float[] data = new float[0];
         final int vectorLength = 10;
         final int size = 5;
-        final ArrayDataset dataset = new ArrayDataset(data, vectorLength, size);
+        final float[] data = new float[vectorLength * size];
+        final ArrayDataset dataset = new ArrayDataset(data, vectorLength);
         final Scorer scorer = mock(Scorer.class);
         final BestResultsAccumulator accum = mock(BestResultsAccumulator.class);
         OngoingStubbing<Float> scoreStub =
