@@ -2,10 +2,9 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
-public class TaxicabDistance implements Distance {
+public final class TaxicabDistance extends Distance {
 
-	@Override
-	public float distance(
+	@Override protected float distance(
             float[] a, int aOffset, float[] b, int bOffset, int length) {
 		float d = 0f;
 		for (int i = 0; i < length; i++) {
@@ -17,8 +16,7 @@ public class TaxicabDistance implements Distance {
 		return d;
 	}
 
-	@Override
-	public float distance(
+	@Override protected float distance(
             float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
 		float d = 0f;
 		for (int i = 0; i < length; i++) {
@@ -30,8 +28,7 @@ public class TaxicabDistance implements Distance {
 		return d;
 	}
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return getClass().getSimpleName();
     }
 

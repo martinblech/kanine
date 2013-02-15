@@ -1,6 +1,6 @@
 package kanine.core;
 
-public final class BoundedHeapAccumulator implements BestResultsAccumulator {
+public final class BoundedHeapAccumulator extends BestResultsAccumulator {
 
 	private final MaxHeap heap;
 
@@ -8,8 +8,7 @@ public final class BoundedHeapAccumulator implements BestResultsAccumulator {
 		heap = new MaxHeap(n);
 	}
 
-    @Override
-	public void accumulate(int index, float inverseScore) {
+    @Override protected void accumulate(int index, float inverseScore) {
 		if (heap.isFull()) {
 			if (heap.isEmpty() || inverseScore > heap.getMax()) {
 				return;
@@ -20,8 +19,7 @@ public final class BoundedHeapAccumulator implements BestResultsAccumulator {
 		}
 	}
 
-    @Override
-	public Result[] get(int n) {
+    @Override public Result[] get(int n) {
 		int size = Math.min(n, heap.size());
 		Result[] results = new Result[size];
 		for (int i = results.length - 1; i >= 0; i--) {

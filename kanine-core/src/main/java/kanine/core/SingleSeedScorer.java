@@ -2,7 +2,7 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
-public final class SingleSeedScorer implements Scorer {
+public final class SingleSeedScorer extends Scorer {
 
     private final Distance distance;
     private final float[] seed;
@@ -12,13 +12,11 @@ public final class SingleSeedScorer implements Scorer {
         this.seed = seed;
     }
 
-    @Override
-    public float inverseScore(float[] data, int offset) {
+    @Override protected float inverseScore(float[] data, int offset) {
         return distance.distance(seed, 0, data, offset, seed.length);
     }
 
-    @Override
-    public float inverseScore(FloatBuffer data, int offset) {
+    @Override protected float inverseScore(FloatBuffer data, int offset) {
         return distance.distance(seed, 0, data, offset, seed.length);
     }
 

@@ -1,6 +1,6 @@
 package kanine.core;
 
-public final class InsertionAccumulator implements BestResultsAccumulator {
+public final class InsertionAccumulator extends BestResultsAccumulator {
 
 	private final int[] indexes;
 	private final float[] inverseScores;
@@ -12,8 +12,7 @@ public final class InsertionAccumulator implements BestResultsAccumulator {
 		this.count = 0;
 	}
 
-    @Override
-	public void accumulate(int index, float inverseScore) {
+    @Override protected void accumulate(int index, float inverseScore) {
 		int i;
 		int n = indexes.length;
 		for (i = count; i > 0; i--) {
@@ -35,8 +34,7 @@ public final class InsertionAccumulator implements BestResultsAccumulator {
 		}
 	}
 
-    @Override
-	public Result[] get(int n) {
+    @Override public Result[] get(int n) {
 		Result[] results = new Result[Math.min(count, n)];
 		for (int i = 0; i < results.length; i++) {
 			results[i] = new Result(indexes[i], inverseScores[i]);

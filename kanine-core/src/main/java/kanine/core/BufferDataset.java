@@ -2,7 +2,7 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
-public class BufferDataset implements Dataset {
+public final class BufferDataset extends Dataset {
 
     private final FloatBuffer data;
     private final int vectorLength;
@@ -12,7 +12,7 @@ public class BufferDataset implements Dataset {
         this.vectorLength = vectorLength;
     }
 
-    public void apply(Scorer scorer, BestResultsAccumulator accum) {
+    @Override public void apply(Scorer scorer, BestResultsAccumulator accum) {
         int size = data.limit() / vectorLength;
         for (int i = 0; i < size; i++) {
             float score = scorer.inverseScore(data, i * vectorLength);

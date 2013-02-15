@@ -2,7 +2,7 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
-public interface Scorer {
-    float inverseScore(float[] data, int offset);
-    float inverseScore(FloatBuffer data, int offset);
+public abstract class Scorer {
+    protected abstract float inverseScore(float[] data, int offset);
+    protected abstract float inverseScore(FloatBuffer data, int offset);
 }

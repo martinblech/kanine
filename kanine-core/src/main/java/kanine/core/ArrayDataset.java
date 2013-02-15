@@ -1,6 +1,6 @@
 package kanine.core;
 
-public class ArrayDataset implements Dataset {
+public final class ArrayDataset extends Dataset {
 
     private final float[] data;
     private final int vectorLength;
@@ -12,7 +12,7 @@ public class ArrayDataset implements Dataset {
         this.size = data.length / vectorLength;
     }
 
-    public void apply(Scorer scorer, BestResultsAccumulator accum) {
+    @Override public void apply(Scorer scorer, BestResultsAccumulator accum) {
         for (int i = 0; i < size; i++) {
             float score = scorer.inverseScore(data, i * vectorLength);
             accum.accumulate(i, score);

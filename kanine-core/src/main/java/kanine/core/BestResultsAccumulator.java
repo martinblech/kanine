@@ -2,7 +2,7 @@ package kanine.core;
 
 import kanine.core.Result;
 
-public interface BestResultsAccumulator {
-	void accumulate(int index, float inverseScore);
-	Result[] get(int n);
+public abstract class BestResultsAccumulator {
+	protected abstract void accumulate(int index, float inverseScore);
+	public abstract Result[] get(int n);
 }

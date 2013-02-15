@@ -1,7 +1,6 @@
 package kanine.core;
 
-public final class PartialQuickSortAccumulator
-        implements BestResultsAccumulator {
+public final class PartialQuickSortAccumulator extends BestResultsAccumulator {
 
 	private final float[] inverseScores;
 	private final int[] index;
@@ -16,16 +15,14 @@ public final class PartialQuickSortAccumulator
 		}
 	}
 
-    @Override
-	public void accumulate(int index, float inverseScore) {
+    @Override protected void accumulate(int index, float inverseScore) {
 		if (sorted > 0) {
 			throw new IllegalStateException("arrays already sorted");
 		}
 		inverseScores[index] = inverseScore;
 	}
 
-    @Override
-	public Result[] get(int n) {
+    @Override public Result[] get(int n) {
 		if (sorted < n) {
 			QuickSort.select(inverseScores, index, n);
 			sorted = n;

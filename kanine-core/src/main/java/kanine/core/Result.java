@@ -1,6 +1,7 @@
 package kanine.core;
 
-public class Result {
+public final class Result {
+
 	public final int index;
 	public final float inverseScore;
 
@@ -9,8 +10,7 @@ public class Result {
         this.inverseScore = inverseScore;
     }
 
-	@Override
-	public String toString() {
+	@Override public String toString() {
 		return String.format("%s(%d, %f)",
                 getClass().getName(), index, inverseScore);
 	}

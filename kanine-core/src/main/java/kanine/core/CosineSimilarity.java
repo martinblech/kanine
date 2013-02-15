@@ -2,7 +2,8 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
-public final class CosineSimilarity implements Distance {
+public final class CosineSimilarity extends Distance {
+
 	private final boolean failOnZeroNorm;
 	private final float defaultValue;
 
@@ -11,8 +12,7 @@ public final class CosineSimilarity implements Distance {
 		this.defaultValue = defaultValue;
 	}
 
-	@Override
-	public float distance(
+	@Override protected float distance(
             float[] a, int aOffset, float[] b, int bOffset, int length) {
 		float dotProduct = 0f;
 		float aNorm = 0f;
@@ -33,8 +33,7 @@ public final class CosineSimilarity implements Distance {
 		return cos;
 	}
 
-	@Override
-	public float distance(
+	@Override protected float distance(
             float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
 		float dotProduct = 0f;
 		float aNorm = 0f;

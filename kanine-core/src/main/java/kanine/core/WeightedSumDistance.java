@@ -3,7 +3,7 @@ package kanine.core;
 import java.nio.FloatBuffer;
 import java.util.Arrays;
 
-public class WeightedSumDistance implements Distance {
+public final class WeightedSumDistance extends Distance {
 
     private final Distance[] distances;
     private final float[] weights;
@@ -16,8 +16,7 @@ public class WeightedSumDistance implements Distance {
         this.weights = weights;
     }
 
-    @Override
-    public float distance(
+    @Override protected float distance(
             float[] a, int aOffset, float[] b, int bOffset, int length) {
         float result = 0;
         for (int i = 0; i < distances.length; i++) {
@@ -27,8 +26,7 @@ public class WeightedSumDistance implements Distance {
         return result;
     }
 
-    @Override
-    public float distance(
+    @Override protected float distance(
             float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
         float result = 0;
         for (int i = 0; i < distances.length; i++) {
@@ -38,8 +36,7 @@ public class WeightedSumDistance implements Distance {
         return result;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return String.format("%s(distances=%s, weigths=%s)",
                 getClass().getSimpleName(),
                 Arrays.toString(distances),

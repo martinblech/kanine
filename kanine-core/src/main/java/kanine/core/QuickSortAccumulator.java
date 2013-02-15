@@ -1,6 +1,6 @@
 package kanine.core;
 
-public final class QuickSortAccumulator implements BestResultsAccumulator {
+public final class QuickSortAccumulator extends BestResultsAccumulator {
 
 	private final float[] inverseScores;
 	private final int[] index;
@@ -15,16 +15,14 @@ public final class QuickSortAccumulator implements BestResultsAccumulator {
 		}
 	}
 
-    @Override
-	public void accumulate(int index, float inverseScore) {
+    @Override protected void accumulate(int index, float inverseScore) {
 		if (sorted) {
 			throw new IllegalStateException("arrays already sorted");
 		}
 		inverseScores[index] = inverseScore;
 	}
 
-    @Override
-	public Result[] get(int n) {
+    @Override public Result[] get(int n) {
 		if (!sorted) {
 			QuickSort.sort(inverseScores, index);
 			sorted = true;

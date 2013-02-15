@@ -2,7 +2,7 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
-public final class SliceDistance implements Distance {
+public final class SliceDistance extends Distance {
     private final Distance d;
     private final int sliceOffset;
     private final int sliceLength;
@@ -15,25 +15,22 @@ public final class SliceDistance implements Distance {
         this.totalLength = sliceOffset + sliceLength;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s(d=%s, sliceOffset=%s, sliceLength=%s)",
-                getClass().getSimpleName(), d, sliceOffset, sliceLength);
-    }
-
-    @Override
-    public final float distance(
+    @Override protected final float distance(
             float[] a, int aOffset, float[] b, int bOffset, int length) {
         assert totalLength <= length;
         return d.distance(a, aOffset + sliceOffset,
                 b, bOffset + sliceOffset, sliceLength);
     }
 
-    @Override
-    public final float distance(
+    @Override protected final float distance(
             float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
         assert totalLength <= length;
         return d.distance(a, aOffset + sliceOffset,
                 b, bOffset + sliceOffset, sliceLength);
+    }
+
+    @Override public String toString() {
+        return String.format("%s(d=%s, sliceOffset=%s, sliceLength=%s)",
+                getClass().getSimpleName(), d, sliceOffset, sliceLength);
     }
 }
