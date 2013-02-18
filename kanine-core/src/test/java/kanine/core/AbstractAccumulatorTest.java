@@ -23,14 +23,14 @@ public abstract class AbstractAccumulatorTest {
 		a.accumulate(2, 10f);
 		Result[] results = a.get(3);
 
-		assertEquals(0, results[0].index);
-		assertEquals(0f, results[0].inverseScore, ERROR);
+		assertEquals(0, results[0].getIndex());
+		assertEquals(0f, results[0].getInverseScore(), ERROR);
 
-		assertEquals(1, results[1].index);
-		assertEquals(1f, results[1].inverseScore, ERROR);
+		assertEquals(1, results[1].getIndex());
+		assertEquals(1f, results[1].getInverseScore(), ERROR);
 
-		assertEquals(2, results[2].index);
-		assertEquals(10f, results[2].inverseScore, ERROR);
+		assertEquals(2, results[2].getIndex());
+		assertEquals(10f, results[2].getInverseScore(), ERROR);
 	}
 
 	private static final float[] randomArray(int length) {
@@ -90,7 +90,9 @@ public abstract class AbstractAccumulatorTest {
 		Result lastResult = null;
 		for (Result result : results) {
 			if (lastResult != null) {
-				assertTrue(lastResult.inverseScore <= result.inverseScore);
+				assertTrue(
+                        lastResult.getInverseScore() <=
+                        result.getInverseScore());
 			}
 			lastResult = result;
 		}
