@@ -19,4 +19,9 @@ public final class BufferDataset extends Dataset {
             accum.accumulate(i, score);
         }
     }
+
+    @Override public void get(int index, float[] buf, int offset) {
+        data.position(index * vectorLength);
+        data.get(buf, offset, vectorLength);
+    }
 }

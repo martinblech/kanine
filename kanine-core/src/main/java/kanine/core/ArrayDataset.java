@@ -18,4 +18,8 @@ public final class ArrayDataset extends Dataset {
             accum.accumulate(i, score);
         }
     }
+
+    @Override public void get(int index, float[] buf, int offset) {
+        System.arraycopy(data, index * vectorLength, buf, offset, vectorLength);
+    }
 }

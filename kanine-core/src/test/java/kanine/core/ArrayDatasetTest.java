@@ -14,8 +14,8 @@ import kanine.core.Scorer;
 
 public class ArrayDatasetTest extends AbstractDatasetTest<float[]> {
 
-    protected float[] getData(int size) {
-        return new float[size];
+    protected float[] getData(float[] data) {
+        return data;
     }
 
     protected OngoingStubbing<Float> getScoreStub(Scorer scorer) {
