@@ -34,8 +34,8 @@ public abstract class AbstractDatasetTest<T> {
         }
         scoreStub.thenThrow(new AssertionError("no more elements"));
         dataset.apply(scorer, accum);
-        final InOrder inOrder = inOrder(scorer, accum);
         for (int i = 0; i < size; i++) {
+            final InOrder inOrder = inOrder(scorer, accum);
             verifyScore(inOrder, scorer, data, i * vectorLength);
             inOrder.verify(accum).accumulate(i, (float) i);
         }
