@@ -15,13 +15,16 @@ public final class BufferDataset extends Dataset {
     @Override public void apply(Scorer scorer, BestResultsAccumulator accum) {
         int size = data.limit() / vectorLength;
         for (int i = 0; i < size; i++) {
-            float score = scorer.inverseScore(data, i * vectorLength);
-            accum.accumulate(i, score);
+            accum.accumulate(i, score(i, scorer));
         }
     }
 
     @Override public void get(int index, float[] buf, int offset) {
         data.position(index * vectorLength);
         data.get(buf, offset, vectorLength);
+    }
+
+    @Override public float score(int index, Scorer scorer) {
+        return scorer.inverseScore(data, index * vectorLength);
     }
 }

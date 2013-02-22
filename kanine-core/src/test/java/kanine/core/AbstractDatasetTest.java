@@ -44,7 +44,6 @@ public abstract class AbstractDatasetTest<T> {
     @Test public void getVector() {
         final T data = getData(new float[] {1f, 2f, 3f, 4f});
         final int vectorLength = 2;
-        final int size = 2;
         final Dataset dataset = getDataset(data, vectorLength);
         float[] valueBuffer = new float[4];
         Arrays.fill(valueBuffer, -1f);
@@ -53,6 +52,20 @@ public abstract class AbstractDatasetTest<T> {
         Arrays.fill(valueBuffer, -1f);
         dataset.get(1, valueBuffer, 2);
         assertArrayEquals(new float[] {-1f, -1f, 3f, 4f}, valueBuffer, 0);
+    }
+
+    @Test public void score() {
+        final T data = getData(new float[] {0f, 1f, 2f, 3f});
+        final int vectorLength = 2;
+        final Dataset dataset = getDataset(data, vectorLength);
+        final Scorer scorer = mock(Scorer.class);
+        getScoreStub(scorer).thenReturn(666f).thenReturn(-1f)
+            .thenThrow(new IllegalStateException());
+        assertEquals(dataset.score(0, scorer), 666f, 0f);
+        assertEquals(dataset.score(1, scorer), -1f, 0f);
+        InOrder inOrder = inOrder(scorer);
+        verifyScore(inOrder, scorer, data, 0);
+        verifyScore(inOrder, scorer, data, 2);
     }
 
 }

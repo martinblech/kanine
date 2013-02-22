@@ -14,12 +14,15 @@ public final class ArrayDataset extends Dataset {
 
     @Override public void apply(Scorer scorer, BestResultsAccumulator accum) {
         for (int i = 0; i < size; i++) {
-            float score = scorer.inverseScore(data, i * vectorLength);
-            accum.accumulate(i, score);
+            accum.accumulate(i, score(i, scorer));
         }
     }
 
     @Override public void get(int index, float[] buf, int offset) {
         System.arraycopy(data, index * vectorLength, buf, offset, vectorLength);
+    }
+
+    @Override public float score(int index, Scorer scorer) {
+        return scorer.inverseScore(data, index * vectorLength);
     }
 }
