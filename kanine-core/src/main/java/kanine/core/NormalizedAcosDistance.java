@@ -2,13 +2,22 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
+/**
+ * Applies {@code acos(x)/PI} to a cosine similarity to turn it into a distance.
+ */
 public final class NormalizedAcosDistance extends Distance {
 
 	private static final float FLOAT_PI = (float) Math.PI;
 	private final Distance d;
 
-	public NormalizedAcosDistance(Distance d) {
-		this.d = d;
+    /**
+     * Create a {@link NormalizedAcosDistance} with the given cosine {@code
+     * distance}.
+     *
+     * @param distance the wrapped distance whose value will be normalized
+     */
+	public NormalizedAcosDistance(Distance distance) {
+		this.d = distance;
 	}
 
 	@Override protected float distance(

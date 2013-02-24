@@ -2,6 +2,14 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
+/**
+ * Calculates the squared <a
+ * href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
+ * between two vectors.
+ *
+ * <p>Note: to make it a plain euclidean distance, clients must wrap it with a
+ * {@link SqrtDistance}.
+ */
 public final class SquaredEuclideanDistance extends Distance {
 
 	@Override protected float distance(

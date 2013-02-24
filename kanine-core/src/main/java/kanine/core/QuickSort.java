@@ -1,21 +1,6 @@
 package kanine.core;
 
-/**
- *
- * Taken from
- * http://stackoverflow.com/questions/951848/java-array-sort-quick-way
- * -to-get-a-sorted-list-of-indices-of-an-array and
- * http://algs4.cs.princeton.edu/23quicksort/Quick.java.html
- *
- * @author http://stackoverflow.com/users/61158/kd304
- * @author Robert Sedgewick
- * @author Kevin Wayne
- *
- */
 final class QuickSort {
-    private QuickSort() {
-        throw new AssertionError(); // not even by accident
-    }
 
 	static void sort(float[] main, int[] index) {
 		sort(main, index, 0, index.length - 1);

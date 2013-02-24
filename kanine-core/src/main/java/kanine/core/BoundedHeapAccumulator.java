@@ -1,11 +1,26 @@
 package kanine.core;
 
+/**
+ * <a href="http://en.wikipedia.org/wiki/Heap_(data_structure)">Heap</a>-backed
+ * implementation of {@link BestResultsAccumulator}.
+ *
+ * <p>Benchmarks show that {@link BoundedHeapAccumulator} outperforms all other
+ * {@link BestResultsAccumulator} implementations in {@link kanine.core} for
+ * most use cases. As a rule of thumb, clients should always use this unless
+ * there is a very clear reason against it.
+ */
 public final class BoundedHeapAccumulator extends BestResultsAccumulator {
 
 	private final MaxHeap heap;
 
-	public BoundedHeapAccumulator(int n) {
-		heap = new MaxHeap(n);
+    /**
+     * Create a {@link BoundedHeapAccumulator} with the given {@code capacity}.
+     *
+     * @param capacity the accumulator's capacity (it will be able to hold at
+     * most this number of best results)
+     */
+	public BoundedHeapAccumulator(int capacity) {
+		heap = new MaxHeap(capacity);
 	}
 
     @Override protected void accumulate(int index, float inverseScore) {

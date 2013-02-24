@@ -2,14 +2,25 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
+/**
+ * Limits the {@link Distance} calculation to a slice of the original vectors.
+ */
 public final class SliceDistance extends Distance {
     private final Distance d;
     private final int sliceOffset;
     private final int sliceLength;
     private final int totalLength;
 
-    public SliceDistance(Distance d, int sliceOffset, int sliceLength) {
-        this.d = d;
+    /**
+     * Create a {@link SliceDistance} for the given {@link Distance}, {@code
+     * sliceOffset} and {@code sliceLength}.
+     *
+     * @param distance does the actual distance calculation
+     * @param sliceOffset the offset of the slice within the original vectors
+     * @param sliceLength the length of the slice
+     */
+    public SliceDistance(Distance distance, int sliceOffset, int sliceLength) {
+        this.d = distance;
         this.sliceOffset = sliceOffset;
         this.sliceLength = sliceLength;
         this.totalLength = sliceOffset + sliceLength;

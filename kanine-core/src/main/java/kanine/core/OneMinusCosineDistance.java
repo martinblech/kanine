@@ -2,12 +2,22 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
+/**
+ * Applies {@code 1 - ((x + 1) / 2)} to a cosine similarity in order to turn it
+ * into a distance.
+ */
 public final class OneMinusCosineDistance extends Distance {
 
 	private final Distance d;
 
-	public OneMinusCosineDistance(Distance d) {
-		this.d = d;
+    /**
+     * Create a {@link OneMinusCosineDistance} with the given cosine {@code
+     * distance}.
+     *
+     * @param distance the wrapped distance whose value will be normalized
+     */
+	public OneMinusCosineDistance(Distance distance) {
+		this.d = distance;
 	}
 
 	@Override protected float distance(

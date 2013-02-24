@@ -1,14 +1,24 @@
 package kanine.core;
 
+/**
+ * <a href="http://en.wikipedia.org/wiki/Insertion_sort">Insertion
+ * sort</a>-backed implementation of {@link BestResultsAccumulator}
+ */
 public final class InsertionAccumulator extends BestResultsAccumulator {
 
 	private final int[] indexes;
 	private final float[] inverseScores;
 	private int count;
 
-	public InsertionAccumulator(int n) {
-		this.indexes = new int[n];
-		this.inverseScores = new float[n];
+    /**
+     * Create an {@link InsertionAccumulator} with the given {@code capacity}.
+     *
+     * @param capacity the capacity of this acummulator (it will be able to hold
+     * at most this number of best results)
+     */
+	public InsertionAccumulator(int capacity) {
+		this.indexes = new int[capacity];
+		this.inverseScores = new float[capacity];
 		this.count = 0;
 	}
 

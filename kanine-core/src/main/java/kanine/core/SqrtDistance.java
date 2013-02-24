@@ -2,12 +2,21 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
+/**
+ * Applies {@code sqrt(x)} over the wrapped distance.
+ */
 public final class SqrtDistance extends Distance {
 
     private final Distance d;
 
-    public SqrtDistance(Distance d) {
-        this.d = d;
+    /**
+     * Create a {@link SqrtDistance} with the given {@link Distance}.
+     *
+     * @param distance the distance whose results {@code sqrt} will be applied
+     * on
+     */
+    public SqrtDistance(Distance distance) {
+        this.d = distance;
     }
 
 	@Override protected float distance(

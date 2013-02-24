@@ -1,11 +1,21 @@
 package kanine.core;
 
+/**
+ * {@code float[]}-backed implementation of {@link Dataset}.
+ */
 public final class ArrayDataset extends Dataset {
 
     private final float[] data;
     private final int vectorLength;
     private final int size;
 
+    /**
+     * Create an {@link ArrayDataset} with the given {@code data} and {@code
+     * vectorLength}.
+     *
+     * @param data the contents of the dataset's vectors
+     * @param vectorLength the length of each vector
+     */
     public ArrayDataset(float[] data, int vectorLength) {
         this.data = data;
         this.vectorLength = vectorLength;

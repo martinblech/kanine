@@ -2,9 +2,6 @@ package kanine.core;
 
 import java.util.Arrays;
 
-/**
- * Adapted from http://www.algolist.net/Data_structures/Binary_heap
- */
 final class MaxHeap {
 	private final float[] data;
 	private final int[] index;

@@ -2,6 +2,11 @@ package kanine.core;
 
 import java.nio.FloatBuffer;
 
+/**
+ * Calculates the <a
+ * href="http://en.wikipedia.org/wiki/Taxicab_distance">Taxicab distance</a>
+ * between two vectors.
+ */
 public final class TaxicabDistance extends Distance {
 
 	@Override protected float distance(

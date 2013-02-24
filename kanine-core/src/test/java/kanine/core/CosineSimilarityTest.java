@@ -27,17 +27,17 @@ public class CosineSimilarityTest extends AbstractDistanceTest {
 		try {
 			d.distance(new float[] { 0f, 0f }, 0, new float[] { 1f, 1f }, 0, 2);
 			fail();
-		} catch (IllegalArgumentException e) {
+		} catch (ArithmeticException e) {
 		}
 		try {
 			d.distance(new float[] { 1f, 1f }, 0, new float[] { 0f, 0f }, 0, 2);
 			fail();
-		} catch (IllegalArgumentException e) {
+		} catch (ArithmeticException e) {
 		}
 		try {
 			d.distance(new float[] { 0f, 0f }, 0, new float[] { 0f, 0f }, 0, 2);
 			fail();
-		} catch (IllegalArgumentException e) {
+		} catch (ArithmeticException e) {
 		}
 		// default on zero norm
 		assertEquals(

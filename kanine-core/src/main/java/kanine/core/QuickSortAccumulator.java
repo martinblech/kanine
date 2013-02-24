@@ -1,24 +1,38 @@
 package kanine.core;
 
+import java.util.Arrays;
+
+/**
+ * <a href="http://en.wikipedia.org/wiki/Quicksort">Quicksort</a>-backed
+ * implementation of {@link BestResultsAccumulator}.
+ */
 public final class QuickSortAccumulator extends BestResultsAccumulator {
 
 	private final float[] inverseScores;
 	private final int[] index;
 	private boolean sorted = false;
 
+    /**
+     * Create a {@link QuickSortAccumulator} with the given {@code indexSize}.
+     *
+     * <p>Note: {@link QuickSortAccumulator} needs to allocate a {@code float[]}
+     * and an {@code int[]} of {@code size==indexSize}. This can be an issue
+     * with big {@code Dataset}s.
+     *
+     * @param indexSize accumulated indexes must be {@code 0 <= index <
+     * indexSize}
+     */
 	public QuickSortAccumulator(int indexSize) {
 		this.inverseScores = new float[indexSize];
 		this.index = new int[indexSize];
-		for (int i = 0; i < indexSize; i++) {
-			inverseScores[i] = Float.MAX_VALUE;
-			index[i] = i;
-		}
+        Arrays.fill(inverseScores, Float.MAX_VALUE);
 	}
 
     @Override protected void accumulate(int index, float inverseScore) {
 		if (sorted) {
 			throw new IllegalStateException("arrays already sorted");
 		}
+        this.index[index] = index;
 		inverseScores[index] = inverseScore;
 	}
 

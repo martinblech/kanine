@@ -3,11 +3,23 @@ package kanine.core;
 import java.nio.FloatBuffer;
 import java.util.Arrays;
 
+/**
+ * Calculates a weighted sum of a set of {@link Distance}s.
+ */
 public final class WeightedSumDistance extends Distance {
 
     private final Distance[] distances;
     private final float[] weights;
 
+    /**
+     * Create a {@link WeightedSumDistance} with the given {@link Distance}s and
+     * {@code weights}.
+     *
+     * @param distances the distances
+     * @param weights the weights
+     * @throws IllegalArgumentException when lengths of {@code distances} and
+     * {@code weights} don't match
+     */
     public WeightedSumDistance(Distance[] distances, float[] weights) {
         if (distances.length != weights.length) {
             throw new IllegalArgumentException("length mismatch");
