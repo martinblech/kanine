@@ -17,6 +17,10 @@ public abstract class AbstractAccumulatorTest {
 	@Test
 	public void basictest() {
 		BestResultsAccumulator a = createAccumulator(4, 3);
+        testAccumulator(a);
+	}
+
+    protected void testAccumulator(BestResultsAccumulator a) {
 		a.accumulate(3, 100f);
 		a.accumulate(1, 1f);
 		a.accumulate(0, 0f);
@@ -31,7 +35,7 @@ public abstract class AbstractAccumulatorTest {
 
 		assertEquals(2, results[2].getIndex());
 		assertEquals(10f, results[2].getInverseScore(), ERROR);
-	}
+    }
 
 	private static final float[] randomArray(int length) {
 		float[] randomArray = new float[length];

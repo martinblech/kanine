@@ -57,4 +57,10 @@ public class OneMinusCosineDistanceTest extends AbstractDistanceTest {
         assertEquals(1f, d.distance(EMPTY, 0, EMPTY, 0, 0), ERROR);
     }
 
+    @Test public void string() {
+        final Distance d = mock(Distance.class);
+        assertEquals(new OneMinusCosineDistance(d).toString(),
+                String.format("OneMinusCosineDistance(%s)", d));
+    }
+
 }

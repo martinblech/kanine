@@ -58,5 +58,11 @@ public class NormalizedAcosDistanceTest extends AbstractDistanceTest {
         when(mockCosine.distance(EMPTY, 0, EMPTY, 0, 0)).thenReturn(-1f);
         assertEquals(1f, d.distance(EMPTY, 0, EMPTY, 0, 0), ERROR);
     }
+
+    @Test public void string() {
+        final Distance d = mock(Distance.class);
+        assertEquals(new NormalizedAcosDistance(d).toString(),
+                String.format("NormalizedAcosDistance(%s)", d));
+    }
 }
 

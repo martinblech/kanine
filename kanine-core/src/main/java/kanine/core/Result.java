@@ -27,7 +27,7 @@ public final class Result {
     public float getInverseScore() { return inverseScore; }
 
 	@Override public String toString() {
-		return String.format("%s(%d, %f)",
-                getClass().getName(), index, inverseScore);
+		return String.format("%s(%d, %s)",
+                getClass().getSimpleName(), index, inverseScore);
 	}
 }

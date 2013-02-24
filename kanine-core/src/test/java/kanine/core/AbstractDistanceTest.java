@@ -26,11 +26,17 @@ public abstract class AbstractDistanceTest {
 
     @Test
     public void arrayBufferEquivalence() {
+        final int nVectors = 100;
+        final int vectorLength = 10;
         List<Object[]> objects = new LinkedList<Object[]>();
-        float[] randomFloats = randomArray(1000);
+        float[] randomFloats = randomArray(nVectors * vectorLength);
+        for (int i = 0; i < vectorLength; i++) {
+            randomFloats[randomFloats.length - 1 - i] = 0f;
+        }
         FloatBuffer buf = FloatBuffer.wrap(randomFloats);
-        for (int i = 0; i < 100; i++) {
-            checkEquals(randomFloats, 0, randomFloats, buf, i*10, 10);
+        for (int i = 0; i < nVectors; i++) {
+            checkEquals(randomFloats, 0, randomFloats, buf,
+                    i * vectorLength, vectorLength);
         }
     }
 

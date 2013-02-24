@@ -64,7 +64,7 @@ public final class CosineSimilarity extends Distance {
 		}
         float normProduct = aNorm * bNorm;
 		if (normProduct == 0) {
-			if (failOnZeroNorm) throw new IllegalArgumentException("zero norm");
+			if (failOnZeroNorm) throw new ArithmeticException("zero norm");
             return defaultValue;
 		}
 		float cos = dotProduct / (float) Math.sqrt(normProduct);

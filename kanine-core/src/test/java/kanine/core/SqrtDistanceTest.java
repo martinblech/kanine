@@ -29,4 +29,10 @@ public class SqrtDistanceTest extends AbstractDistanceTest {
                 ERROR);
     }
 
+    @Test public void string() {
+        final Distance d = mock(Distance.class);
+        assertEquals(new SqrtDistance(d).toString(),
+                String.format("SqrtDistance(%s)", d));
+    }
+
 }

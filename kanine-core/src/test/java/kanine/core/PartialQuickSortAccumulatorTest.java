@@ -3,11 +3,11 @@ package kanine.core;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class QuickSortAccumulatorTest extends AbstractAccumulatorTest {
+public class PartialQuickSortAccumulatorTest extends AbstractAccumulatorTest {
 
-	@Override protected QuickSortAccumulator createAccumulator(
+	@Override protected PartialQuickSortAccumulator createAccumulator(
             int indexSize, int nBest) {
-		return new QuickSortAccumulator(indexSize);
+		return new PartialQuickSortAccumulator(indexSize);
 	}
 
     @Test public void reuseFails() {
@@ -19,5 +19,4 @@ public class QuickSortAccumulatorTest extends AbstractAccumulatorTest {
         } catch (IllegalStateException e) {
         }
     }
-
 }

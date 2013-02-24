@@ -3,11 +3,13 @@ package kanine.core;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.nio.FloatBuffer;
+
 public class CosineSimilarityTest extends AbstractDistanceTest {
 
     @Override
     protected Distance getDistance() {
-        return new CosineSimilarity(true, 0f);
+        return new CosineSimilarity(false, 0f);
     }
 
 	@Test
@@ -30,7 +32,8 @@ public class CosineSimilarityTest extends AbstractDistanceTest {
 		} catch (ArithmeticException e) {
 		}
 		try {
-			d.distance(new float[] { 1f, 1f }, 0, new float[] { 0f, 0f }, 0, 2);
+			d.distance(new float[] { 1f, 1f }, 0,
+                    FloatBuffer.wrap(new float[] { 0f, 0f }), 0, 2);
 			fail();
 		} catch (ArithmeticException e) {
 		}
@@ -45,5 +48,12 @@ public class CosineSimilarityTest extends AbstractDistanceTest {
 				new CosineSimilarity(false, .12345f).distance(new float[] { 0f,
 						0f }, 0, new float[] { 0f, 0f }, 0, 2), ERROR);
 	}
+
+    @Test public void string() {
+        assertEquals(new CosineSimilarity(true, 0f).toString(),
+                "CosineSimilarity(zeronorm=fail)");
+        assertEquals(new CosineSimilarity(false, 0.5f).toString(),
+                "CosineSimilarity(zeronorm=0.5)");
+    }
 }
 

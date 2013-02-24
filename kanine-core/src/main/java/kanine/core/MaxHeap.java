@@ -14,19 +14,13 @@ final class MaxHeap {
 	}
 
 	public float getMax() {
-		if (isEmpty()) {
-			throw new IllegalStateException("Heap is empty");
-		} else {
-			return data[0];
-		}
+        assert !isEmpty();
+        return data[0];
 	}
 
 	public int getMaxIndex() {
-		if (isEmpty()) {
-			throw new IllegalStateException("Heap is empty");
-		} else {
-			return index[0];
-		}
+        assert !isEmpty();
+        return index[0];
 	}
 
 	public boolean isEmpty() {
@@ -50,14 +44,11 @@ final class MaxHeap {
 	}
 
 	public void insert(int i, float value) {
-		if (isFull()) {
-			throw new IllegalStateException("heap overflow");
-		} else {
-			heapSize++;
-			data[heapSize - 1] = value;
-			index[heapSize - 1] = i;
-			siftUp(heapSize - 1);
-		}
+        assert !isFull();
+        heapSize++;
+        data[heapSize - 1] = value;
+        index[heapSize - 1] = i;
+        siftUp(heapSize - 1);
 	}
 
 	public boolean isFull() {
@@ -83,16 +74,13 @@ final class MaxHeap {
 	}
 
 	public void removeMax() {
-		if (isEmpty()) {
-			throw new IllegalStateException("Heap is empty");
-		} else {
-			data[0] = data[heapSize - 1];
-			index[0] = index[heapSize - 1];
-			heapSize--;
-			if (heapSize > 0) {
-				siftDown(0);
-			}
-		}
+        assert !isEmpty();
+        data[0] = data[heapSize - 1];
+        index[0] = index[heapSize - 1];
+        heapSize--;
+        if (heapSize > 0) {
+            siftDown(0);
+        }
 	}
 
 	public void replaceMax(int i, float value) {
@@ -133,10 +121,5 @@ final class MaxHeap {
 
 	private boolean cmp(float a, float b) {
 		return a < b;
-	}
-
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName() + Arrays.toString(data);
 	}
 }

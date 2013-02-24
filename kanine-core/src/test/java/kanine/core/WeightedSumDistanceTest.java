@@ -40,5 +40,25 @@ public class WeightedSumDistanceTest extends AbstractDistanceTest {
             verify(d2).distance(EMPTY, 0, EMPTY, 0, 0);
         }
     }
+
+    @Test public void lengthMismatch() {
+        try {
+            new WeightedSumDistance(new Distance[3], new float[4]);
+            fail();
+        } catch (IllegalArgumentException e) {
+        }
+    }
+
+    @Test public void string() {
+        final Distance d1 = mock(Distance.class);
+        final Distance d2 = mock(Distance.class);
+        final Distance[] ds = new Distance[] {d1, d2};
+        final float w1 = .5f;
+        final float w2 = .3f;
+        final float[] ws = new float[] {w1, w2};
+        assertEquals(new WeightedSumDistance(ds, ws).toString(),
+                String.format("WeightedSumDistance([%s, %s], [%s, %s])",
+                    d1, d2, w1, w2));
+    }
 }
 

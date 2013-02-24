@@ -41,7 +41,7 @@ public final class SliceDistance extends Distance {
     }
 
     @Override public String toString() {
-        return String.format("%s(d=%s, sliceOffset=%s, sliceLength=%s)",
+        return String.format("%s(distance=%s, sliceOffset=%s, sliceLength=%s)",
                 getClass().getSimpleName(), d, sliceOffset, sliceLength);
     }
 }

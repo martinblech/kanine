@@ -9,13 +9,11 @@ import static org.mockito.Mockito.*;
 
 public class SliceDistanceTest extends AbstractDistanceTest {
 
-    @Override
-    protected Distance getDistance() {
+    @Override protected Distance getDistance() {
         return new SliceDistance(mock(Distance.class), 4, 3);
     }
 
-    @Test
-    public void array() {
+    @Test public void array() {
         Distance mockDistance = mock(Distance.class);
         SliceDistance d = new SliceDistance(mockDistance, 4, 3);
         float[] a = new float[10];
@@ -24,8 +22,7 @@ public class SliceDistanceTest extends AbstractDistanceTest {
         verify(mockDistance).distance(a, 4, b, 5, 3);
     }
 
-    @Test
-    public void arrayOverflow() {
+    @Test public void arrayOverflow() {
         SliceDistance d = new SliceDistance(mock(Distance.class), 5, 6);
         try {
             d.distance(EMPTY, 0, EMPTY, 0, 10);
@@ -35,8 +32,7 @@ public class SliceDistanceTest extends AbstractDistanceTest {
         }
     }
 
-    @Test
-    public void buffer() {
+    @Test public void buffer() {
         Distance mockDistance = mock(Distance.class);
         SliceDistance d = new SliceDistance(mockDistance, 4, 3);
         float[] a = new float[10];
@@ -45,8 +41,7 @@ public class SliceDistanceTest extends AbstractDistanceTest {
         verify(mockDistance).distance(a, 4, b, 5, 3);
     }
 
-    @Test
-    public void bufferOverflow() {
+    @Test public void bufferOverflow() {
         SliceDistance d = new SliceDistance(mock(Distance.class), 5, 6);
         try {
             d.distance(EMPTY, 0, FloatBuffer.wrap(EMPTY), 0, 10);
@@ -54,6 +49,14 @@ public class SliceDistanceTest extends AbstractDistanceTest {
         } catch (AssertionError e) {
             // good
         }
+    }
+
+    @Test public void string() {
+        final Distance d = mock(Distance.class);
+        assertEquals(new SliceDistance(d, 1, 2).toString(),
+                String.format(
+                    "SliceDistance(distance=%s, sliceOffset=1, sliceLength=2)",
+                    d));
     }
 
 }

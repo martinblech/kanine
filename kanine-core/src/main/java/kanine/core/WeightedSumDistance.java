@@ -49,8 +49,7 @@ public final class WeightedSumDistance extends Distance {
     }
 
     @Override public String toString() {
-        return String.format("%s(distances=%s, weigths=%s)",
-                getClass().getSimpleName(),
+        return String.format("%s(%s, %s)", getClass().getSimpleName(),
                 Arrays.toString(distances),
                 Arrays.toString(weights));
     }
