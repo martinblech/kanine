@@ -11,7 +11,7 @@ package kanine.core;
  */
 public final class BoundedHeapAccumulator extends BestResultsAccumulator {
 
-	private final MaxHeap heap;
+    private final MaxHeap heap;
 
     /**
      * Create a {@link BoundedHeapAccumulator} with the given {@code capacity}.
@@ -19,29 +19,30 @@ public final class BoundedHeapAccumulator extends BestResultsAccumulator {
      * @param capacity the accumulator's capacity (it will be able to hold at
      * most this number of best results)
      */
-	public BoundedHeapAccumulator(int capacity) {
-		heap = new MaxHeap(capacity);
-	}
+    public BoundedHeapAccumulator(final int capacity) {
+        heap = new MaxHeap(capacity);
+    }
 
-    @Override protected void accumulate(int index, float inverseScore) {
-		if (heap.isFull()) {
-			if (heap.isEmpty() || inverseScore > heap.getMax()) {
-				return;
-			}
-			heap.replaceMax(index, inverseScore);
-		} else {
-			heap.insert(index, inverseScore);
-		}
-	}
+    @Override protected void accumulate(
+            final int index, final float inverseScore) {
+        if (heap.isFull()) {
+            if (heap.isEmpty() || inverseScore > heap.getMax()) {
+                return;
+            }
+            heap.replaceMax(index, inverseScore);
+        } else {
+            heap.insert(index, inverseScore);
+        }
+    }
 
-    @Override public Result[] get(int n) {
-		int size = Math.min(n, heap.size());
-		Result[] results = new Result[size];
-		for (int i = results.length - 1; i >= 0; i--) {
-			results[i] = new Result(heap.getMaxIndex(), heap.getMax());
-			heap.removeMax();
-		}
-		return results;
-	}
+    @Override public Result[] get(final int n) {
+        int size = Math.min(n, heap.size());
+        Result[] results = new Result[size];
+        for (int i = results.length - 1; i >= 0; i--) {
+            results[i] = new Result(heap.getMaxIndex(), heap.getMax());
+            heap.removeMax();
+        }
+        return results;
+    }
 
 }

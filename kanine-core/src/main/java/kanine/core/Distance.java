@@ -22,7 +22,7 @@ public abstract class Distance {
      * @param length the length of both vectors
      * @return the distance between the two vectors
      */
-	protected abstract float distance(
+    protected abstract float distance(
             float[] a, int aOffset, float[] b, int bOffset, int length);
 
     /**
@@ -40,6 +40,6 @@ public abstract class Distance {
      * @param length the length of both vectors
      * @return the distance between the two vectors
      */
-	protected abstract float distance(
+    protected abstract float distance(
             float[] a, int aOffset, FloatBuffer b, int bOffset, int length);
 }

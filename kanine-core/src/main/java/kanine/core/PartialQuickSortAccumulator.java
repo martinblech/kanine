@@ -9,9 +9,9 @@ import java.util.Arrays;
  */
 public final class PartialQuickSortAccumulator extends BestResultsAccumulator {
 
-	private final float[] inverseScores;
-	private final int[] index;
-	private int sorted = 0;
+    private final float[] inverseScores;
+    private final int[] index;
+    private int sorted = 0;
 
     /**
      * Create a {@link PartialQuickSortAccumulator} with the given {@code
@@ -21,34 +21,35 @@ public final class PartialQuickSortAccumulator extends BestResultsAccumulator {
      * float[]} and an {@code int[]} of {@code size==indexSize}. This can be an
      * issue with big {@code Dataset}s.
      *
-     * @param indexSize accumulated indexes must be {@code 0 <= index <
-     * indexSize}
+     * @param indexSize accumulated indexes must be in the range
+     * {@code [0,indexSize)}
      */
-	public PartialQuickSortAccumulator(int indexSize) {
-		this.inverseScores = new float[indexSize];
-		this.index = new int[indexSize];
+    public PartialQuickSortAccumulator(final int indexSize) {
+        this.inverseScores = new float[indexSize];
+        this.index = new int[indexSize];
         Arrays.fill(inverseScores, Float.MAX_VALUE);
-	}
+    }
 
-    @Override protected void accumulate(int index, float inverseScore) {
-		if (sorted > 0) {
-			throw new IllegalStateException("arrays already sorted");
-		}
+    @Override protected void accumulate(
+            final int index, final float inverseScore) {
+        if (sorted > 0) {
+            throw new IllegalStateException("arrays already sorted");
+        }
         this.index[index] = index;
-		inverseScores[index] = inverseScore;
-	}
+        inverseScores[index] = inverseScore;
+    }
 
-    @Override public Result[] get(int n) {
-		if (sorted < n) {
-			QuickSort.select(inverseScores, index, n);
-			sorted = n;
-		}
+    @Override public Result[] get(final int n) {
+        if (sorted < n) {
+            QuickSort.select(inverseScores, index, n);
+            sorted = n;
+        }
         int safeN = Math.min(n, index.length);
-		Result[] results = new Result[safeN];
-		for (int i = 0; i < safeN; i++) {
-			results[i] = new Result(index[i], inverseScores[i]);
-		}
-		return results;
-	}
+        Result[] results = new Result[safeN];
+        for (int i = 0; i < safeN; i++) {
+            results[i] = new Result(index[i], inverseScores[i]);
+        }
+        return results;
+    }
 
 }

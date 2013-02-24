@@ -5,8 +5,8 @@ package kanine.core;
  */
 public final class Result {
 
-	private final int index;
-	private final float inverseScore;
+    private final int index;
+    private final float inverseScore;
 
     /**
      * Create a {@link Result} with the given {@code index} and
@@ -15,7 +15,7 @@ public final class Result {
      * @param index the index
      * @param inverseScore the inverse score
      */
-    public Result(int index, float inverseScore) {
+    public Result(final int index, final float inverseScore) {
         this.index = index;
         this.inverseScore = inverseScore;
     }
@@ -26,8 +26,8 @@ public final class Result {
     /** Get the {@code inverseScore}. */
     public float getInverseScore() { return inverseScore; }
 
-	@Override public String toString() {
-		return String.format("%s(%d, %s)",
-                getClass().getSimpleName(), index, inverseScore);
-	}
+    @Override public String toString() {
+        return String.format("%s(%d, %s)",
+                getClass().getSimpleName(), getIndex(), getInverseScore());
+    }
 }

@@ -1,7 +1,5 @@
 package kanine.core;
 
-import kanine.core.Result;
-
 /**
  * Accumulates {@code (index, inverseScore)} pairs and lets the client get the
  * best ones.
@@ -18,7 +16,7 @@ public abstract class BestResultsAccumulator {
      * @param inverseScore the vector's calculated score
      * @see Dataset#apply(Scorer, BestResultsAccumulator)
      */
-	protected abstract void accumulate(int index, float inverseScore);
+    protected abstract void accumulate(int index, float inverseScore);
 
     /**
      * Get the best {@code n} {@link Result}s accumulated.
@@ -27,5 +25,5 @@ public abstract class BestResultsAccumulator {
      * @return an array of {@link Result}s with at most {@code n} elements,
      * sorted by increasing {@code inverseScore}
      */
-	public abstract Result[] get(int n);
+    public abstract Result[] get(int n);
 }

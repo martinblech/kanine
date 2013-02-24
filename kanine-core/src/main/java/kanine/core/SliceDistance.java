@@ -19,22 +19,23 @@ public final class SliceDistance extends Distance {
      * @param sliceOffset the offset of the slice within the original vectors
      * @param sliceLength the length of the slice
      */
-    public SliceDistance(Distance distance, int sliceOffset, int sliceLength) {
+    public SliceDistance(final Distance distance, final int sliceOffset, final
+            int sliceLength) {
         this.d = distance;
         this.sliceOffset = sliceOffset;
         this.sliceLength = sliceLength;
         this.totalLength = sliceOffset + sliceLength;
     }
 
-    @Override protected final float distance(
-            float[] a, int aOffset, float[] b, int bOffset, int length) {
+    @Override protected float distance(final float[] a, final int aOffset,
+            final float[] b, final int bOffset, final int length) {
         assert totalLength <= length;
         return d.distance(a, aOffset + sliceOffset,
                 b, bOffset + sliceOffset, sliceLength);
     }
 
-    @Override protected final float distance(
-            float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
+    @Override protected float distance(final float[] a, final int aOffset,
+            final FloatBuffer b, final int bOffset, final int length) {
         assert totalLength <= length;
         return d.distance(a, aOffset + sliceOffset,
                 b, bOffset + sliceOffset, sliceLength);

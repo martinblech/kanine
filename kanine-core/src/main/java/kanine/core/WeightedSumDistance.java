@@ -20,7 +20,8 @@ public final class WeightedSumDistance extends Distance {
      * @throws IllegalArgumentException when lengths of {@code distances} and
      * {@code weights} don't match
      */
-    public WeightedSumDistance(Distance[] distances, float[] weights) {
+    public WeightedSumDistance(
+            final Distance[] distances, final float[] weights) {
         if (distances.length != weights.length) {
             throw new IllegalArgumentException("length mismatch");
         }
@@ -28,8 +29,8 @@ public final class WeightedSumDistance extends Distance {
         this.weights = weights;
     }
 
-    @Override protected float distance(
-            float[] a, int aOffset, float[] b, int bOffset, int length) {
+    @Override protected float distance(final float[] a, final int aOffset,
+            final float[] b, final int bOffset, final int length) {
         float result = 0;
         for (int i = 0; i < distances.length; i++) {
             result += weights[i] * distances[i].distance(
@@ -38,8 +39,8 @@ public final class WeightedSumDistance extends Distance {
         return result;
     }
 
-    @Override protected float distance(
-            float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
+    @Override protected float distance(final float[] a, final int aOffset,
+            final FloatBuffer b, final int bOffset, final int length) {
         float result = 0;
         for (int i = 0; i < distances.length; i++) {
             result += weights[i] * distances[i].distance(

@@ -22,11 +22,13 @@ public final class SingleSeedScorer extends Scorer {
         this.seed = seed;
     }
 
-    @Override protected float inverseScore(float[] data, int offset) {
+    @Override protected float inverseScore(
+            final float[] data, final int offset) {
         return distance.distance(seed, 0, data, offset, seed.length);
     }
 
-    @Override protected float inverseScore(FloatBuffer data, int offset) {
+    @Override protected float inverseScore(
+            final FloatBuffer data, final int offset) {
         return distance.distance(seed, 0, data, offset, seed.length);
     }
 

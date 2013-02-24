@@ -15,19 +15,19 @@ public final class SqrtDistance extends Distance {
      * @param distance the distance whose results {@code sqrt} will be applied
      * on
      */
-    public SqrtDistance(Distance distance) {
+    public SqrtDistance(final Distance distance) {
         this.d = distance;
     }
 
-	@Override protected float distance(
-            float[] a, int aOffset, float[] b, int bOffset, int length) {
-		return (float) Math.sqrt(d.distance(a, aOffset, b, bOffset, length));
-	}
+    @Override protected float distance(final float[] a, final int aOffset,
+            final float[] b, final int bOffset, final int length) {
+        return (float) Math.sqrt(d.distance(a, aOffset, b, bOffset, length));
+    }
 
-	@Override protected float distance(
-            float[] a, int aOffset, FloatBuffer b, int bOffset, int length) {
-		return (float) Math.sqrt(d.distance(a, aOffset, b, bOffset, length));
-	}
+    @Override protected float distance(final float[] a, final int aOffset,
+            final FloatBuffer b, final int bOffset, final int length) {
+        return (float) Math.sqrt(d.distance(a, aOffset, b, bOffset, length));
+    }
 
     @Override public String toString() {
         return String.format("%s(%s)", getClass().getSimpleName(), d);
