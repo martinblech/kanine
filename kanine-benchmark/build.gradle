@@ -1,0 +1,24 @@
+dependencies {
+  compile project(":kanine-core")
+  compile 'com.google.caliper:caliper:0.5-rc1'
+}
+
+task(accumulator, dependsOn: 'classes', type: JavaExec) {
+  main = 'kanine.core.AccumulatorSpeed.AccumulateBenchmark'
+  classpath = sourceSets.main.runtimeClasspath
+}
+
+task(accumulatorGetTop, dependsOn: 'classes', type: JavaExec) {
+  main = 'kanine.core.AccumulatorSpeed.GetTopBenchmark'
+  classpath = sourceSets.main.runtimeClasspath
+}
+
+task(arrayVsMMap, dependsOn: 'classes', type: JavaExec) {
+  main = 'kanine.core.ArrayVsMMap'
+  classpath = sourceSets.main.runtimeClasspath
+}
+
+task(distanceSpeed, dependsOn: 'classes', type: JavaExec) {
+  main = 'kanine.core.DistanceSpeed'
+  classpath = sourceSets.main.runtimeClasspath
+}

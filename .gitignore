@@ -49,3 +49,7 @@ target/
 *.ipr
 *.iws
 .idea/
+
+# Gradle
+build/
+.gradle/

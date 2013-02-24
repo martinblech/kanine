@@ -1,0 +1,4 @@
+dependencies {
+  compile project(":kanine-core")
+  compile 'org.apache.lucene:lucene-core:4.1.0'
+}
