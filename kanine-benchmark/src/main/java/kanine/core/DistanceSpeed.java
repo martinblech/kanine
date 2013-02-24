@@ -1,4 +1,4 @@
-package kanine.benchmark;
+package kanine.core;
 
 import java.util.Random;
 

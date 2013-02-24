@@ -1,4 +1,4 @@
-package kanine.benchmark;
+package kanine.core;
 
 import java.io.File;
 import java.io.RandomAccessFile;
