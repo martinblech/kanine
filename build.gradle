@@ -1,8 +1,21 @@
 subprojects {
   apply plugin: 'java'
   apply plugin: 'checkstyle'
+  apply plugin: 'findbugs'
+  apply plugin: 'pmd'
+  apply plugin: 'jdepend'
+  apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
 
-  checkstyle.configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
+  checkstyle {
+    configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
+  }
+  checkstyleTest.setEnabled false
+
+  findbugs {
+    excludeFilter = new File(rootDir, 'config/findbugs/exclude.xml')
+  }
+
+  pmdTest.setEnabled false
 
   repositories {
     mavenCentral()
@@ -14,6 +27,7 @@ subprojects {
   }
 
   version = '0.1'
+  group = 'kanine'
 
   jar {
     manifest.attributes provider: 'gradle'

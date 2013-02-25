@@ -28,7 +28,6 @@ public abstract class AbstractDistanceTest {
     public void arrayBufferEquivalence() {
         final int nVectors = 100;
         final int vectorLength = 10;
-        List<Object[]> objects = new LinkedList<Object[]>();
         float[] randomFloats = randomArray(nVectors * vectorLength);
         for (int i = 0; i < vectorLength; i++) {
             randomFloats[randomFloats.length - 1 - i] = 0f;

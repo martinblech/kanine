@@ -4,6 +4,7 @@ dependencies {
 }
 
 checkstyleMain.setEnabled false
+findbugsMain.setEnabled false
 
 task(accumulator, dependsOn: 'classes', type: JavaExec) {
   main = 'kanine.core.AccumulatorSpeed$AccumulateBenchmark'
