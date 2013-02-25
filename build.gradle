@@ -1,5 +1,8 @@
 subprojects {
   apply plugin: 'java'
+  apply plugin: 'checkstyle'
+
+  checkstyle.configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
 
   repositories {
     mavenCentral()
