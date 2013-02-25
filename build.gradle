@@ -1,10 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.eriwen:gradle-cobertura-plugin:1.0'
+    }
+}
+
 subprojects {
   apply plugin: 'java'
   apply plugin: 'checkstyle'
   apply plugin: 'findbugs'
   apply plugin: 'pmd'
   apply plugin: 'jdepend'
-  apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
+  apply plugin: 'cobertura'
 
   checkstyle {
     configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
